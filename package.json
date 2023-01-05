@@ -21,6 +21,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/joy": "^5.0.0-alpha.60",
     "@mui/lab": "^5.0.0-alpha.113",
+    "@mui/material": "^5.11.3",
     "@netlify/plugin-nextjs": "^4.29.4",
     "apexcharts": "^3.23.1",
     "axios": "^0.27.2",

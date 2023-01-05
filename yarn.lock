@@ -494,10 +494,10 @@
     "prop-types" "^15.8.1"
     "react-is" "^18.2.0"
 
-"@mui/core-downloads-tracker@^5.11.1", "@mui/core-downloads-tracker@^5.11.2":
-  "integrity" "sha512-ztLQELdSSuJFXezng8g5eCzy8mogtzMM8JcfG3HIGgUJ2RlAiBXI2Qe0adKmrJlF4FMat8vTaTeoiRNBZH4t1Q=="
-  "resolved" "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.11.2.tgz"
-  "version" "5.11.2"
+"@mui/core-downloads-tracker@^5.11.2", "@mui/core-downloads-tracker@^5.11.3":
+  "integrity" "sha512-Bgb6//KtxY7IC7M5Pa5RKFX1wttc213mqpKqydnz3wn4BGDXfA5c0vf5nTu5zqsJeB4T3ysAJTRJhQ/E1GsZDQ=="
+  "resolved" "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.11.3.tgz"
+  "version" "5.11.3"
 
 "@mui/icons-material@^5.11.0":
   "integrity" "sha512-I2LaOKqO8a0xcLGtIozC9xoXjZAto5G5gh0FYUMAlbsIHNHIjn4Xrw9rvjY20vZonyiGrZNMAlAXYkY6JvhF6A=="
@@ -536,17 +536,17 @@
     "prop-types" "^15.8.1"
     "react-is" "^18.2.0"
 
-"@mui/material@^5.0.0":
-  "integrity" "sha512-yaZiXvcrl2vgUK+VO24780BWRgwdAMmAyuMVZnRTts1Yu0tWd6PjIYq2ZtaOlpj6/LbaSS+Q2kSfxYnDQ20CEQ=="
-  "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.11.1.tgz"
-  "version" "5.11.1"
+"@mui/material@^5.0.0", "@mui/material@^5.11.3":
+  "integrity" "sha512-Oz+rMFiMtxzzDLUxKyyj4mSxF9ShmsBoJ9qvglXCYqklgSrEl1R/Z4hfPZ+2pWd5CriO8U/0CFHr4DksrlTiCw=="
+  "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.11.3.tgz"
+  "version" "5.11.3"
   dependencies:
-    "@babel/runtime" "^7.20.6"
-    "@mui/base" "5.0.0-alpha.111"
-    "@mui/core-downloads-tracker" "^5.11.1"
-    "@mui/system" "^5.11.1"
+    "@babel/runtime" "^7.20.7"
+    "@mui/base" "5.0.0-alpha.112"
+    "@mui/core-downloads-tracker" "^5.11.3"
+    "@mui/system" "^5.11.2"
     "@mui/types" "^7.2.3"
-    "@mui/utils" "^5.11.1"
+    "@mui/utils" "^5.11.2"
     "@types/react-transition-group" "^4.4.5"
     "clsx" "^1.2.1"
     "csstype" "^3.1.1"
