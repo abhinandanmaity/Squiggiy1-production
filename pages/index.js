@@ -18,9 +18,11 @@ import Seller from '../models/Seller'
 import Wishlist from '../models/Wishlist'
 
 import { Paper, Typography, Button } from '@mui/material';
-import Carousel from 'react-material-ui-carousel';
+// import Carousel from 'react-material-ui-carousel';
 import Image from 'next/image'
-import { Fullscreen } from '@mui/icons-material'
+import ReactDOM from 'react-dom';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 
 
@@ -152,6 +154,7 @@ const Home = ({ t, products }) => {
         <title>Squiggiy</title>
         <meta name="description" content="Upp your fasion" />
         <link rel="icon" href="/favicon.png" />
+        {/* <Link rel="stylesheet" href="carousel.css"/> */}
       </Head>
 
       <div>
@@ -170,38 +173,25 @@ const Home = ({ t, products }) => {
           pauseOnHover
         />
 
-        <Carousel sx={{
 
-          // height: "350px"
-        }}>
-          {/* Change above line to <> and it work, maybe some issues in carousel */}
-          <Paper>
-            {/* <Typography>First Item</Typography> */}
-            {/* <Button variant="outlined">Click me please!</Button> */}
-            <Image src="/2-4.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
+        <Carousel >
+          <div>
+            <img src="/2-4.jpg" className="w-full" />
 
-          </Paper>
-          <Paper>
-            {/* <Typography>Second Item</Typography> */}
-            {/* <Button variant="outlined">Click me please!</Button> */}
-            <Image src="/eCommerce-Website-Components-image-1024x660-min.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
+          </div>
+          <div>
+            <img src="/eCommerce-Website-Components-image-1024x660-min.jpg" className="w-full"/>
 
-          </Paper>
-          <Paper>
-            {/* <Typography>Third Item</Typography> */}
-            {/* <Button variant="outlined">Click me please!</Button> */}
-            <Image src="/order-placed-received-processing-concept-tiny-people-e-commerce-shopping-vector-illustration-set-online-booking-customer-216417607.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
+          </div>
+          <div>
+            <img src="/order-placed-received-processing-concept-tiny-people-e-commerce-shopping-vector-illustration-set-online-booking-customer-216417607.jpg" className="w-full"/>
 
-          </Paper>
-          <Paper>
-            {/* <Typography>Third Item</Typography> */}
-            {/* <Button variant="outlined">Click me please!</Button> */}
-            <Image src="/buyonline.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
-
-          </Paper>
+          </div>
+          <div>
+            <img src="/buyonline.jpg" className="w-full"/>
+            
+          </div>
         </Carousel>
-
-
 
 
 

@@ -68,6 +68,15 @@ const Footer = ({ user }) => {
                             </nav>
                         </div>
                     </div>
+
+                    <div className=" md:mx-0 mx-auto text-center md:text-left">
+
+                        <span className='text-sm text-center'>We Accept</span>
+                        <a className="flex title-font items-center md:justify-start justify-center text-gray-900">
+                            <img src="/image (2).jpg" alt="" className="h-20 w-32 md:h-24 md:w-32" />
+                        </a>
+                    </div>
+
                 </div>
                 <div className="bg-gray-100">
                     <div className="container mx-auto pb-4 px-5 flex flex-wrap flex-col sm:flex-row">
