@@ -90,10 +90,10 @@ export default async function handler(req, res) {
                                     var options = {
 
                                         /* for Staging */
-                                        hostname: 'securegw-stage.paytm.in',
+                                        // hostname: 'securegw-stage.paytm.in',
 
                                         /* for Production */
-                                        // hostname: 'securegw.paytm.in',
+                                        hostname: 'securegw.paytm.in',
 
                                         port: 443,
                                         path: `/theia/api/v1/initiateTransaction?mid=${req.body.paytm_mid}&orderId=${req.body.oid}`,
@@ -174,7 +174,7 @@ export default async function handler(req, res) {
                     paytmParams.body = {
                         "requestType": "Payment",
                         "mid": req.body.paytm_mid,
-                        "websiteName": "YOUR_WEBSITE_NAME",
+                        "websiteName": "squiggiy",
                         "orderId": req.body.oid,
                         "callbackUrl": `${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/payment/posttransaction`,
                         "txnAmount": {
@@ -205,10 +205,10 @@ export default async function handler(req, res) {
                             var options = {
 
                                 /* for Staging */
-                                hostname: 'securegw-stage.paytm.in',
+                                // hostname: 'securegw-stage.paytm.in',
 
                                 /* for Production */
-                                // hostname: 'securegw.paytm.in',
+                                hostname: 'securegw.paytm.in',
 
                                 port: 443,
                                 path: `/theia/api/v1/initiateTransaction?mid=${req.body.paytm_mid}&orderId=${req.body.oid}`,

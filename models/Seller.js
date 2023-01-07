@@ -18,6 +18,8 @@ const SellerSchema = new mongoose.Schema({
     img: { type: String },
     paytm_mid: { type: String },
     paytm_mkey: { type: String },
+    google_mid: { type: String },
+    google_mname: { type: String },
     resetToken: { type: String },
     expireToken: { type: Date },
     presetToken: { type: String },

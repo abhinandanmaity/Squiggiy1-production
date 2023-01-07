@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
         let s = await Seller.findOne({ userid: req.body.userid })
 
-        if (s.address && s.pincode && s.phone && s.paytm_mid && s.paytm_mkey && s.state && s.city) {
+        if (s.address && s.pincode && s.phone && s.state && s.city) {
 
             // console.log("hochboj")
 

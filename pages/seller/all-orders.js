@@ -471,10 +471,6 @@ export async function getServerSideProps(context) {
                 // }
             }
 
-            if (item.paymentstatus == "Initiate") {
-
-                let o = await Order.findByIdAndDelete({ _id: item._id })
-            }
         } else if (item.products && item.paymentstatus != "Initiate") {
 
             let pppp;
@@ -510,13 +506,6 @@ export async function getServerSideProps(context) {
                 orders[j] = JSON.parse(JSON.stringify(item))
                 j++
                 // }
-            }
-        }
-        else {
-
-            if (item.paymentstatus == "Initiate") {
-
-                let o = await Order.findByIdAndDelete({ _id: item._id })
             }
         }
     }

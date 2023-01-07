@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import NextLink from "next/link";
 import PropTypes from "prop-types";
@@ -7,7 +9,6 @@ import {
   useMediaQuery,
   List,
   Link,
-  // Button,
   Typography,
   ListItem,
   Collapse,
@@ -21,7 +22,6 @@ import { useRouter } from "next/router";
 import { CssVarsProvider } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import jsCookie from 'js-cookie'
-
 
 const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
 
@@ -74,14 +74,14 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
                         color: `${location === item.href ? "white" : ""} `,
                       }}
                       icon={item.icon}
-                      width="17"
-                      height="17"
+                      width="20"
+                      height="20"
                     />
                   </ListItemIcon>
 
-                  <ListItemText onClick={onSidebarClose} className="px-2">
+                  <ListItemText onClick={onSidebarClose}>
                     {item.title}
-                  </ListItemText >
+                  </ListItemText>
                 </ListItem>
               </NextLink>
             </List>
@@ -89,10 +89,11 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
         </List>
 
         <CssVarsProvider>
-          <Button onClick={logout} fullWidth variant="soft" color="info" className=" border-2">
-            Logout
+           <Button onClick={logout} fullWidth variant="soft" color="info" className=" border-2">
+               Logout
           </Button>
-        </CssVarsProvider>
+         </CssVarsProvider>
+
       </Box>
 
     </Box>

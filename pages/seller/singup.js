@@ -110,7 +110,7 @@ const Sellersingup = () => {
                     jsCookie.set('token', resp.data.token, { expires: 16 });
 
                     setTimeout(() => {
-                        Router.push(`${process.env.NEXT_PUBLIC_DOMEN_NAME}`)
+                        Router.push(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/myindex`)
                     }, 1080);
 
                     toast.success('Your account has been created', {

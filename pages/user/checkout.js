@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import axios from 'axios';
@@ -17,6 +17,25 @@ import Product from '../../models/Product';
 var jwt = require('jsonwebtoken');
 import Script from 'next/script';
 var CryptoJS = require("crypto-js");
+import GooglePayButton from '@google-pay/button-react'
+
+
+// const { googlePayClient } = window;
+
+// const baseCardPaymentMethod = {
+//   type: "CARD",
+//   parameters: {
+//     allowedCardNetworks: ["VISA", "MASTERCARD"],
+//     allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"]
+//   }
+// };
+
+// const googlePayBaseConfiguration = {
+//   apiVersion: 2,
+//   apiVersionMinor: 0,
+//   allowedPaymentMethods: [baseCardPaymentMethod]
+// };
+
 
 const Checkout = ({ user, cart, product, outostock, seller }) => {
 
@@ -579,20 +598,20 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
         }
 
 
-        // if (!seller.paytm_mkey || !seller.paytm_mid) {
+        if (!seller.paytm_mkey || !seller.paytm_mid) {
 
-        //     toast.error('Try again, after complete your profile.', {
-        //         position: "bottom-center",
-        //         autoClose: 941,
-        //         hideProgressBar: true,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //     });
+            toast.error('Paytm payment is not avalible for this product', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
-        //     return;
-        // }
+            return;
+        }
 
         if (!user.phone) {
 
@@ -764,6 +783,19 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
             });
 
             return;
+        } else if (txnRes.error) {
+
+            toast.error('Check your internet', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
         }
         else {
 
@@ -808,6 +840,7 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
         };
         // console.log(config)
 
+
         // initialze configuration using init method 
         window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
 
@@ -820,6 +853,454 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
         });
     }
 
+    let googlePayClient;
+
+    const tokenizationSpecification = {
+        type: "PAYMENT_GATEWAY",
+        parameters: {
+            gateway: "example",
+            getwayMerchantId: "gatewayMerchantId"
+        }
+    };
+
+    const cardPaymentMethod = {
+        type: "CARD",
+        tokenizationSpecification: tokenizationSpecification,
+        parameters: {
+            allowedCardNetworks: ["VISA", "MASTERCARD"],
+            allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+            billingAddressRequired: true,
+            billingAddressParameters: {
+                format: "FULL",
+                phoneNumberRequired: true
+            }
+        }
+    };
+
+    const googlePayBaseConfiguration = {
+        apiVersion: 2,
+        apiVersionMinor: 0,
+        allowedPaymentMethods: [cardPaymentMethod]
+    };
+
+
+    function onGooglePayLoaded() {
+
+        googlePayClient = new google.payments.api.PaymentsClient({
+            // environment: "TEST"
+            environment: "PRODUCTION"
+        });
+
+        googlePayClient.isReadyToPay(googlePayBaseConfiguration)
+            .then(function (response) {
+                if (response.result) {
+
+                    console.log("success")
+                    //   createAndAddButton();
+
+                } else {
+
+                    console.log("Unable to pay using Google Pay")
+                }
+            })
+            .catch(function (err) {
+
+                console.error("Error determining readiness to use Google Pay: ", err);
+            });
+    }
+
+    const initiatepayment_googlepay = async () => {
+
+
+        // <GooglePayButton
+        //     environment="TEST"
+        //     paymentRequest={{
+        //         apiVersion: 2,
+        //         apiVersionMinor: 0,
+        //         allowedPaymentMethods: [
+        //             {
+        //                 type: 'CARD',
+        //                 parameters: {
+        //                     allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+        //                     allowedCardNetworks: ['MASTERCARD', 'VISA'],
+        //                 },
+        //                 tokenizationSpecification: {
+        //                     type: 'PAYMENT_GATEWAY',
+        //                     parameters: {
+        //                         gateway: 'example',
+        //                         gatewayMerchantId: 'exampleGatewayMerchantId',
+        //                     },
+        //                 },
+        //             },
+        //         ],
+        //         merchantInfo: {
+        //             merchantId: '12345678901234567890',
+        //             merchantName: 'Demo Merchant',
+        //         },
+        //         transactionInfo: {
+        //             totalPriceStatus: 'FINAL',
+        //             totalPriceLabel: 'Total',
+        //             totalPrice: '1',
+        //             currencyCode: 'USD',
+        //             countryCode: 'US',
+        //         },
+        //         shippingAddressRequired: true,
+        //         callbackIntents: ['SHIPPING_ADDRESS', 'PAYMENT_AUTHORIZATION'],
+        //     }}
+        //     onLoadPaymentData={paymentRequest => {
+        //         console.log('Success', paymentRequest);
+        //     }}
+        //     onPaymentAuthorized={paymentData => {
+        //         console.log('Payment Authorised Success', paymentData)
+        //         return { transactionState: 'SUCCESS' }
+        //     }
+        //     }
+        //     onPaymentDataChanged={paymentData => {
+        //         console.log('On Payment Data Changed', paymentData)
+        //         return {}
+        //     }
+        //     }
+        //     existingPaymentMethodRequired='false'
+        //     buttonColor='white'
+        //     buttonType='Buy'
+        // />
+
+
+        if (to == 0 && !product) {
+
+            toast.error('Your must have one product to checkout', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
+        }
+
+        if (outostock == 1) {
+
+            toast.error('Check your cart, some product is out of stock', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
+        }
+
+        let txnToken;
+
+        let prev = "";
+
+        {
+            !product && Object.keys(cart).map((item) => {
+
+                if (prev == "") {
+
+                    prev = cart[item].userid
+                }
+
+                if (cart[item].userid != prev) {
+
+                    toast.error('All product must be from same shop', {
+                        position: "bottom-center",
+                        autoClose: 941,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+
+                    return;
+                }
+            })
+        }
+
+
+        if (!seller.google_mname || !seller.google_mid) {
+
+            toast.error('Google pay is not avalible for this product', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
+        }
+
+        if (!user.phone) {
+
+            toast.error('Try again, after complete your profile.', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
+
+        }
+
+        if (disable === 'newa') {
+
+            if (!address || address.length < 6) {
+
+                toast.error('Valid Address must be required', {
+                    position: "bottom-center",
+                    autoClose: 941,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+
+                return;
+            }
+            if (!pincode || pincode.length < 3) {
+
+                toast.error('Valid Pincode must be required', {
+                    position: "bottom-center",
+                    autoClose: 941,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+
+                return;
+            }
+
+        } else {
+
+            if (!user.address || user.address.length < 6) {
+
+                toast.error('Valid Address must be required', {
+                    position: "bottom-center",
+                    autoClose: 941,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+
+                return;
+            }
+            if (!user.pincode || user.pincode.length < 3) {
+
+                toast.error('Valid Pincode must be required', {
+                    position: "bottom-center",
+                    autoClose: 941,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+
+                return;
+            }
+        }
+
+        let data;
+        {
+            !product ? data = {
+                cart, to, oid, email: user.email, userphone: user.phone, address: user.address, pincode: user.pincode, state: user.state, city: user.city
+            }
+                : data = {
+                    cart: { product }, to: (parseInt((product.price) - (((product.price) * product.discount) / 100))), oid, email: user.email, userphone: user.phone, address: user.address, pincode: user.pincode, state: user.state, city: user.city
+                }
+        }
+
+        if (disable === 'newa') {
+
+            {
+                !product ? data = {
+                    cart, to, oid, email: user.email, userphone: user.phone, address, pincode, state, city
+                }
+                    : data = {
+                        cart: { product }, to: (parseInt((product.price) - (((product.price) * product.discount) / 100))), oid, email: user.email, userphone: user.phone, address, pincode, state, city
+                    }
+            }
+        }
+
+
+        let a = await fetch(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/payment/googlepay_pretransaction`, {
+
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+
+        let txnRes = await a.json()
+
+        // console.log(txnRes.error)
+
+        if (txnRes.error == 'Some product is out of stock, check your cart') {
+
+            toast.error('Some product is out of stock, check your cart', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
+
+        } else if (txnRes.error == 'Some products are not servisable in your area') {
+
+            toast.error('Some products are not servisable in your area', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
+        } else if (txnRes.error) {
+
+            toast.error('Check your internet', {
+                position: "bottom-center",
+                autoClose: 941,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            return;
+        }
+        else {
+
+            jsCookie.remove('bn_product')
+        }
+
+
+        googlePayClient = new google.payments.api.PaymentsClient({
+            // environment: "TEST"
+            environment: "PRODUCTION"
+        });
+
+        const paymentDataRequest = Object.assign({}, googlePayBaseConfiguration)
+
+        if (product) {
+
+            paymentDataRequest.transactionInfo = {
+
+                totalPriceStatus: "FINAL",
+                totalPrice: (parseInt((product.price) - (((product.price) * product.discount) / 100))),
+                currencyCode: "INR",
+                countryCode: 'IN',
+            };
+        } else {
+
+            paymentDataRequest.transactionInfo = {
+
+                totalPriceStatus: "FINAL",
+                totalPrice: to,
+                currencyCode: "INR",
+                countryCode: 'IN',
+            };
+        }
+
+        paymentDataRequest.merchantInfo = {
+
+            merchantId: seller.google_mid,
+            merchantName: seller.google_mname
+        };
+        let d;
+        googlePayClient.loadPaymentData(paymentDataRequest)
+            .then(function (paymentData) {
+
+                // console.log(paymentData.paymentMethodData
+                // );
+                d = {
+                    paymentinfo: paymentData.paymentMethodData, oid
+                }
+
+                // console.log(d)
+                const sendform = async () => {
+
+                    try {
+
+                        let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api//payment/googlepay_posttransaction`, d);
+                        // console.log(resp.data.order._id)
+
+                        // if (resp.data.id) {
+
+                        //     if (!product) {
+
+                        //         clearcart();
+                        //     } else {
+                        //         jsCookie.remove('bn_product')
+                        //     }
+
+                        router.push(`/user/order-summaries/?id=${resp.data.order._id}`);
+
+                    } catch (err) {
+
+                        // // Handle Error Here
+                        // console.log("error")
+                        // console.log(err);
+                        toast.error("Check your internet", {
+                            position: "bottom-center",
+                            autoClose: 941,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+
+                    }
+                };
+                sendform();
+
+            })
+            .catch(function (err) {
+                // console.log(err);
+
+                toast.error('Check your payment details', {
+                    position: "bottom-center",
+                    autoClose: 941,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                return;
+            });
+
+    }
+
 
     return (
 
@@ -830,8 +1311,12 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                 <meta name="description" content="Upp your fasion" />
                 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
                 <link rel="icon" href="/favicon.png" />
+
             </Head>
-            <Script type="application/javascript" crossorigin="anonymous" src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`} />
+
+            <Script async src="https://pay.google.com/gp/p/js/pay.js" onload={onGooglePayLoaded} />
+
+            <Script type="application/javascript" crossorigin="anonymous" src={`https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/${seller.paytm_mid}.js`} />
 
 
             <div className='pt-14 min-h-screen'>
@@ -906,16 +1391,27 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
 
                             <div className="container mx-auto w-1/2 flex justify-between pt-3">
 
-                                <div className=" space-y-11">
+                                <div className=" space-y-16">
                                     {pmethod != 'netbank' ? <input onClick={(e) => { handlecheck(e, 'netbank') }}
-                                        value={'netbank'} className='cursor-pointer flex flex-col' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked value={'netbank'} onClick={(e) => { handlecheck(e, 'netbank') }} />} {pmethod != 'cod' ? <input onClick={(e) => { handlecheck(e, 'cod') }} value={'cod'} className='cursor-pointer flex flex-col' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked value={'cod'} onClick={(e) => { handlecheck(e, 'cod') }} />}
+                                        value={'netbank'} className='cursor-pointer flex flex-col mt-5' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked className='mt-4' value={'netbank'} onClick={(e) => { handlecheck(e, 'netbank') }} />}
+
+                                    {pmethod != 'googlepay' ? <input onClick={(e) => { handlecheck(e, 'googlepay') }}
+                                        value={'googlepay'} className='cursor-pointer flex flex-col' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked value={'googlepay'} onClick={(e) => { handlecheck(e, 'googlepay') }} />}
+
+                                    {pmethod != 'cod' ? <input onClick={(e) => { handlecheck(e, 'cod') }} value={'cod'} className='cursor-pointer flex flex-col' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked value={'cod'} onClick={(e) => { handlecheck(e, 'cod') }} />}
 
                                 </div>
 
-                                <p className="space-y-9">
+                                <p className="space-y-10">
                                     <span className="font-medium text-sm flex flex-col">
-                                        Online Payment
-                                    </span><span className="font-medium text-sm flex flex-col">
+                                        <img src='/image_processing20210128-7750-jldwgy.gif' alt='squiggiy' className='w-32 h-16'></img>
+                                    </span>
+
+                                    <span className="font-medium text-sm flex flex-col">
+                                        <img src='/Screensh.png' alt='squiggiy' className='w-16 h-6'></img>
+                                    </span>
+
+                                    <span className="font-medium text-sm flex flex-col">
                                         Case on delivery
                                     </span>
                                 </p>
@@ -961,12 +1457,21 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                                     </ol>
 
                                     {!product && cart != undefined && pmethod === 'netbank' && <div className="mx-10 my-4">
-                                        <button onClick={initiatepayment} className='px-1 py-0 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {to}</span></button>
+                                        <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {to}</span></button>
+
+                                    </div>}
+                                    {!product && cart != undefined && pmethod === 'googlepay' && <div className="mx-10 my-4">
+                                        <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {to}</span></button>
 
                                     </div>}
 
-                                    {product && pmethod === 'netbank' && <div className="mx-10 my-4">
-                                        <button onClick={initiatepayment} className='px-1 py-0 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {(parseInt((product.price) - (((product.price) * product.discount) / 100)))}</span></button>
+
+                                    {(product && pmethod === 'netbank') && <div className="mx-10 my-4">
+                                        <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {(parseInt((product.price) - (((product.price) * product.discount) / 100)))}</span></button>
+
+                                    </div>}
+                                    {(product && pmethod === 'googlepay') && <div className="mx-10 my-4">
+                                        <button onClick={initiatepayment_googlepay} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {(parseInt((product.price) - (((product.price) * product.discount) / 100)))}</span></button>
 
                                     </div>}
 
@@ -1178,22 +1683,32 @@ export async function getServerSideProps(context) {
 
     let bytes;
     let bytes2;
+    let bytes3;
     let pp;
     let pp2;
+    let pp3;
 
     if (seller) {
 
-        bytes = CryptoJS.AES.decrypt(seller.paytm_mid, `${process.env.CRYPTO_SECRET_KEY}`)
-        bytes2 = CryptoJS.AES.decrypt(seller.paytm_mkey, `${process.env.CRYPTO_SECRET_KEY}`)
+        if (seller.paytm_mid) {
 
-        pp = bytes.toString(CryptoJS.enc.Utf8)
-        pp2 = bytes2.toString(CryptoJS.enc.Utf8)
+            bytes = CryptoJS.AES.decrypt(seller.paytm_mid, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp = bytes.toString(CryptoJS.enc.Utf8)
+            seller.paytm_mid = pp
+        }
+        if (seller.paytm_mkey) {
 
-        seller.paytm_mid = pp
-        seller.paytm_mkey = pp2
+            bytes2 = CryptoJS.AES.decrypt(seller.paytm_mkey, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp2 = bytes2.toString(CryptoJS.enc.Utf8)
+            seller.paytm_mkey = pp2
+        }
+        if (seller.google_mid) {
+
+            bytes3 = CryptoJS.AES.decrypt(seller.google_mid, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp3 = bytes3.toString(CryptoJS.enc.Utf8)
+            seller.google_mid = pp3
+        }
     }
-
-
 
     if (product) {
 

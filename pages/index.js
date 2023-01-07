@@ -17,6 +17,11 @@ import User from '../models/User';
 import Seller from '../models/Seller'
 import Wishlist from '../models/Wishlist'
 
+import { Paper, Typography, Button } from '@mui/material';
+import Carousel from 'react-material-ui-carousel';
+import Image from 'next/image'
+import { Fullscreen } from '@mui/icons-material'
+
 
 
 const Home = ({ t, products }) => {
@@ -165,8 +170,43 @@ const Home = ({ t, products }) => {
           pauseOnHover
         />
 
+        <Carousel sx={{
 
-        <img src="/soshopimg2.jpg" alt="" className='w-full h-screen bg-no-repeat bg-cover ' />
+          // height: "350px"
+        }}>
+          {/* Change above line to <> and it work, maybe some issues in carousel */}
+          <Paper>
+            {/* <Typography>First Item</Typography> */}
+            {/* <Button variant="outlined">Click me please!</Button> */}
+            <Image src="/2-4.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
+
+          </Paper>
+          <Paper>
+            {/* <Typography>Second Item</Typography> */}
+            {/* <Button variant="outlined">Click me please!</Button> */}
+            <Image src="/eCommerce-Website-Components-image-1024x660-min.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
+
+          </Paper>
+          <Paper>
+            {/* <Typography>Third Item</Typography> */}
+            {/* <Button variant="outlined">Click me please!</Button> */}
+            <Image src="/order-placed-received-processing-concept-tiny-people-e-commerce-shopping-vector-illustration-set-online-booking-customer-216417607.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
+
+          </Paper>
+          <Paper>
+            {/* <Typography>Third Item</Typography> */}
+            {/* <Button variant="outlined">Click me please!</Button> */}
+            <Image src="/buyonline.jpg" alt="" className='w-full h-1/2' width={1400} height={599} />
+
+          </Paper>
+        </Carousel>
+
+
+
+
+
+        {/* <img src="/soshopimg2.jpg" alt="" className='w-full h-screen bg-no-repeat bg-cover ' /> */}
+
 
         <div className='' >
 

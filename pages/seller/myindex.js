@@ -22,7 +22,6 @@ import { ImageAspectRatioOutlined } from '@mui/icons-material';
 
 
 
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 const Index = ({ orders, bestSellingproduct }) => {
 
     // console.log(bestSellingproduct)
@@ -32,6 +31,7 @@ const Index = ({ orders, bestSellingproduct }) => {
     // console.log(new Date().getFullYear() == orders[0].oiddate.slice(0, 4))
     // console.log(new Date().getMonth() + 1)
     // console.log(new Date().getHours())
+    const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
     let month = [[], [], [], [], [], [], [], [], [], [], [], []]
     let i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0;
@@ -346,12 +346,12 @@ const Index = ({ orders, bestSellingproduct }) => {
 
             <ThemeProvider theme={theme}>
 
-                <style jsx global>{`
+                {/* <style jsx global>{`
  
                 footer{
                     display: none;
                 }
-            `}</style>
+            `}</style> */}
 
                 <FullLayout>
                     <Grid container spacing={0}>
@@ -367,11 +367,7 @@ const Index = ({ orders, bestSellingproduct }) => {
                                 />
                             </BaseCard>
 
-
                         </Grid>
-
-
-
 
                         <Grid item xs={12} lg={12}>
 
@@ -403,7 +399,7 @@ const Index = ({ orders, bestSellingproduct }) => {
                                                     lg={4}
                                                     sx={{
                                                         display: "flex",
-                                                        alignItems: "stretch",
+                                                        alignItems: "center",
                                                     }}
                                                 >
                                                     <Card
@@ -783,11 +779,15 @@ export async function getServerSideProps(context) {
 
                 // console.log(item.products.product.img = product.img)
                 // console.log(product)
-                item.products.product.img = product.img
-                bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products.product))
-                // console.log(bestSellingproduct[k])
-                k++
-                // }
+
+                if (product) {
+
+                    item.products.product.img = product.img
+                    bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products.product))
+                    // console.log(bestSellingproduct[k])
+                    k++
+                    // }
+                }
 
             }
         } else if (item.products) {
@@ -817,6 +817,7 @@ export async function getServerSideProps(context) {
     // console.log(bestSellingproduct)
 
     return {
+
         props: { orders: JSON.parse(JSON.stringify(orders)), bestSellingproduct: JSON.parse(JSON.stringify(bestSellingproduct)) }
     }
 }

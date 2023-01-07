@@ -33,6 +33,8 @@ const Editmyaccount = ({ seller }) => {
     const [city, setCity] = useState(seller.city)
     const [paytm_mid, setPaytm_mid] = useState(seller.paytm_mid)
     const [paytm_mkey, setPaytm_mkey] = useState(seller.paytm_mkey)
+    const [google_mname, setGoogle_mname] = useState(seller.google_mname)
+    const [google_mid, setGoogle_mid] = useState(seller.google_mid)
     const [img, setImg] = useState()
     const [profile, setProfile] = useState()
     const [loading, setLoading] = React.useState(false);
@@ -63,6 +65,12 @@ const Editmyaccount = ({ seller }) => {
         else if (e.target.name == 'paytm_mkey') {
             setPaytm_mkey(e.target.value);
         }
+        else if (e.target.name == 'google_mname') {
+            setGoogle_mname(e.target.value);
+        }
+        else if (e.target.name == 'google_mid') {
+            setGoogle_mid(e.target.value);
+        }
     }
 
     const handlesubmit = (e) => {
@@ -72,7 +80,7 @@ const Editmyaccount = ({ seller }) => {
         // const axios = require('axios').default;
 
         const data = [{
-            _id: seller._id, shopname, phone, pincode, address, img: profile, state, city, paytm_mid, paytm_mkey
+            _id: seller._id, shopname, phone, pincode, address, img: profile, state, city, paytm_mid, paytm_mkey, google_mname, google_mid
         }];
 
         // console.log(data)
@@ -125,6 +133,8 @@ const Editmyaccount = ({ seller }) => {
             setImg();
             setPaytm_mid('');
             setPaytm_mkey('');
+            setGoogle_mid('');
+            setGoogle_mname('');
 
         } else {
 
@@ -370,6 +380,15 @@ const Editmyaccount = ({ seller }) => {
                                     <label htmlFor="email-address" className="block text-gray-700 text-sm font-bold mb-2">Paytm Mkey</label>
                                     <input value={paytm_mkey} onChange={handlechange} id="email-addressa" name="paytm_mkey" type="name" autoComplete="email" className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Paytm mkey" />
                                 </div>
+                                <div className='pt-5'>
+                                    <label htmlFor="email-address" className="block text-gray-700 text-sm font-bold mb-2">Google Mname</label>
+                                    <input value={google_mname} onChange={handlechange} id="email-addressa" name="google_mname" type="name" autoComplete="email" className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Google Mname" />
+                                </div>
+                                <div className='pt-5'>
+                                    <label htmlFor="email-address" className="block text-gray-700 text-sm font-bold mb-2">Google Mid</label>
+                                    <input value={google_mid} onChange={handlechange} id="email-addressa" name="google_mid" type="name" autoComplete="email" className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Google Mid" />
+                                </div>
+                                
 
                             </div>
 

@@ -301,6 +301,8 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
             };
             sendform();
 
+        } else {
+            router.push('/user/login');
         }
     }
 
@@ -484,7 +486,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
                                         <div className="text-sm ">
                                             Name: {seller.shopname}
                                         </div>
-                                        <div className="text-sm md:px-7">
+                                        <div className="text-sm md:px-7 px-2">
                                             Phone: {seller.phone}
                                         </div>
 
@@ -536,7 +538,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                                                             <Link href={`/product/${similarproduct[item].slug}`}><span>
 
-                                                                <img className="rounded-t-lg w-56 h-44" src={similarproduct[item].img} alt="squiggiy" />
+                                                                <img className="rounded-t-lg w-85 h-44" src={similarproduct[item].img} alt="squiggiy" />
 
                                                                 <div className="flex justify-between mt-5">
                                                                     <div>
@@ -722,7 +724,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
                                 <div className="text-sm ">
                                     Name: {seller.shopname}
                                 </div>
-                                <div className="text-sm md:px-7">
+                                <div className="text-sm md:px-7 mx-3">
                                     Phone: {seller.phone}
                                 </div>
                             </div>
@@ -770,7 +772,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                                                     <Link href={`/product/${similarproduct[item].slug}`}><span>
 
-                                                        <img className="rounded-t-lg w-48 h-36" src={similarproduct[item].img} alt="squiggiy" />
+                                                        <img className="rounded-t-lg w-60 h-44" src={similarproduct[item].img} alt="squiggiy" />
 
                                                         <div className="flex justify-between mt-5">
                                                             <div>

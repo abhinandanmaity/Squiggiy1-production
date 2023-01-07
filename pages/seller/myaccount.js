@@ -173,6 +173,20 @@ const myaccount = ({ user }) => {
                                                         </div>
                                                 </div>}
 
+
+                                                {user.google_mid != undefined && <div className="grid grid-cols-2 text-sm">
+                                                    <div className="px-4 py-2 font-semibold">Google Mid</div>
+                                                    <div className="px-4 py-2">
+                                                    {user.google_mid}
+                                                        </div>
+                                                </div>}
+                                                {user.google_mname != undefined && <div className="grid grid-cols-2 text-sm">
+                                                    <div className="px-4 py-2 font-semibold">Google Mname</div>
+                                                    <div className="px-4 py-2">
+                                                    {user.google_mname}
+                                                        </div>
+                                                </div>}
+
                                             </div>
                                         </div>
 
@@ -274,19 +288,32 @@ export async function getServerSideProps(context) {
 
     let bytes;
     let bytes2;
+    let bytes3;
     let pp;
     let pp2;
+    let pp3;
 
     if (user) {
 
-        bytes = CryptoJS.AES.decrypt(user.paytm_mid, `${process.env.CRYPTO_SECRET_KEY}`)
-        bytes2 = CryptoJS.AES.decrypt(user.paytm_mkey, `${process.env.CRYPTO_SECRET_KEY}`)
 
-        pp = bytes.toString(CryptoJS.enc.Utf8)
-        pp2 = bytes2.toString(CryptoJS.enc.Utf8)
+        if (user.paytm_mid) {
 
-        user.paytm_mid = pp
-        user.paytm_mkey = pp2
+            bytes = CryptoJS.AES.decrypt(user.paytm_mid, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp = bytes.toString(CryptoJS.enc.Utf8)
+            user.paytm_mid = pp
+        }
+        if (user.paytm_mkey) {
+
+            bytes2 = CryptoJS.AES.decrypt(user.paytm_mkey, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp2 = bytes2.toString(CryptoJS.enc.Utf8)
+            user.paytm_mkey = pp2
+        }
+        if (seller.google_mid) {
+
+            bytes3 = CryptoJS.AES.decrypt(user.google_mid, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp3 = bytes3.toString(CryptoJS.enc.Utf8)
+            user.google_mid = pp3
+        }
 
     }
 
