@@ -27,6 +27,7 @@
     "@mui/x-data-grid-generator": "^5.17.18",
     "@mui/x-data-grid-pro": "^5.17.18",
     "@netlify/plugin-nextjs": "^4.29.4",
+    "@nivo/core": "^0.80.0",
     "@nivo/line": "^0.80.0",
     "@types/googlepay": "^0.6.4",
     "apexcharts": "^3.23.1",
