@@ -84,22 +84,26 @@ const Myorders = ({ orders, user }) => {
         {
             field: "id",
             headerName: "ID",
-            flex: 0.1,
+            // flex: 0.1,
+            width: 22,
         },
         {
             field: "oderid",
             headerName: "Order ID",
-            flex: 0.7,
+            // flex: 0.7,
+            width: 222
         },
         {
             field: "shippingaddress",
             headerName: "Address",
-            flex: 0.8,
+            // flex: 0.8,
+            width: 252
         },
         {
             field: "paymentstatus",
             headerName: "Payment",
-            flex: 0.8,
+            // flex: 0.8,
+            width: 222,
             renderCell: (params) => {
                 return (
 
@@ -136,7 +140,8 @@ const Myorders = ({ orders, user }) => {
         {
             field: "deliverystatus",
             headerName: "Status",
-            flex: 0.6,
+            // flex: 0.6,
+            width: 212,
             renderCell: (params) => {
                 return (
                     <div >
@@ -187,17 +192,18 @@ const Myorders = ({ orders, user }) => {
                     </div>
                 )
             },
-
         },
         {
             field: "amount",
             headerName: "Price",
-            flex: 0.5,
+            // flex: 0.5,
+            width: 142,
         },
         {
             field: "edit",
             headerName: "Edit",
-            flex: 0.1,
+            // flex: 0.1,
+            width: 6,
             sortable: false,
             disableClickEventBubbling: true,
             renderCell: (params) => {
@@ -224,7 +230,7 @@ const Myorders = ({ orders, user }) => {
             {
                 id: id + 1,
                 oderid: result[item].orderid,
-                shippingaddress: `${result[item].shippingaddress.address.slice(0, 16)}${result[item].shippingaddress.address.length > 16 ? "..." : ""}, ${result[item].shippingaddress.pincode}`,
+                shippingaddress: `${result[item].shippingaddress.address.slice(0, 26)}${result[item].shippingaddress.address.length > 26 ? "..." : ""}, ${result[item].shippingaddress.pincode}`,
                 paymentstatus: result[item].paymentstatus,
                 deliverystatus: result[item].deliverystatus,
                 amount: `₹ ${result[item].amount}`,
