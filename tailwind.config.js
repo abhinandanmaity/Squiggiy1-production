@@ -21,11 +21,15 @@ module.exports = {
       xxxs: '330px',
       xxs: '320px',
       xs: '529px',
+      xsm: '464px',
+      ssm: '470px',
       sm: '660px',
+      lsm: '704px',
       md: '770px',
       lg: '1024px',
       xl: '1280px',
       '2xl': '1536px',
+      '4xl': '4536px',
     },
 
     extend: {

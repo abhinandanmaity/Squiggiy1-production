@@ -151,8 +151,8 @@ export default async function handler(req, res) {
             }
         }
 
-        console.log(add)
-        console.log(add === 0)
+        // console.log(add)
+        // console.log(add === 0)
 
         if (add == 0) {
 

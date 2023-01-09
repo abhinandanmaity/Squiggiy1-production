@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import dynamic from "next/dynamic";
-import BaseCard from '../../src/components/baseCard/BaseCard'
+// import BaseCard from '../../src/components/baseCard/BaseCard'
 import User from '../../models/User';
 import Order from '../../models/Order';
 import Seller from '../../models/Seller';
@@ -12,13 +12,17 @@ var jwt = require('jsonwebtoken')
 import mongoose from 'mongoose'
 import jsCookie from 'js-cookie'
 import Link from 'next/link';
-import { Card, CardContent, Typography, Button, Grid } from "@mui/material";
+import {
+    Card, CardContent, Typography, Button, Grid,
+    FormControl, MenuItem, InputLabel, Box, Select
+} from "@mui/material";
 import Image from "next/image"
+import { ResponsiveLine } from '@nivo/line'
+// import { ImageAspectRatioOutlined } from '@mui/icons-material';
 
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../src/theme/theme";
 import FullLayout from "../../src/layouts/FullLayout";
-import { ImageAspectRatioOutlined } from '@mui/icons-material';
 
 
 
@@ -31,7 +35,9 @@ const Index = ({ orders, bestSellingproduct }) => {
     // console.log(new Date().getFullYear() == orders[0].oiddate.slice(0, 4))
     // console.log(new Date().getMonth() + 1)
     // console.log(new Date().getHours())
-    const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+    // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+    const [view, setView] = useState("Jan");
 
     let month = [[], [], [], [], [], [], [], [], [], [], [], []]
     let i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0;
@@ -234,104 +240,216 @@ const Index = ({ orders, bestSellingproduct }) => {
     }
     // console.log(topproduct)
 
-    const optionssalesoverview = {
-        grid: {
-            show: true,
-            borderColor: "transparent",
-            strokeDashArray: 2,
-            padding: {
-                left: 0,
-                right: 0,
-                bottom: 0,
-            },
-        },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: "42%",
-                endingShape: "rounded",
-                borderRadius: 5,
-            },
-        },
+    // const optionssalesoverview = {
+    //     grid: {
+    //         show: true,
+    //         borderColor: "transparent",
+    //         strokeDashArray: 2,
+    //         padding: {
+    //             left: 0,
+    //             right: 0,
+    //             bottom: 0,
+    //         },
+    //     },
+    //     plotOptions: {
+    //         bar: {
+    //             horizontal: false,
+    //             columnWidth: "42%",
+    //             endingShape: "rounded",
+    //             borderRadius: 5,
+    //         },
+    //     },
 
-        colors: ["#fb9678", "#03c9d7"],
-        fill: {
-            type: "solid",
-            opacity: 1,
-        },
-        chart: {
-            offsetX: -15,
-            toolbar: {
-                show: false,
-            },
-            foreColor: "#adb0bb",
-            fontFamily: "'DM Sans',sans-serif",
-            sparkline: {
-                enabled: false,
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        markers: {
-            size: 0,
-        },
-        legend: {
-            show: false,
-        },
-        xaxis: {
-            type: "category",
-            categories: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "July",
-                "Aug",
-                "Sept",
-                "Oct",
-                "Nov",
-                "Dec",
-            ],
-            labels: {
-                style: {
-                    cssClass: "grey--text lighten-2--text fill-color",
-                },
-            },
-        },
-        yaxis: {
-            show: true,
-            min: 0,
-            max: max,
-            tickAmount: 3,
-            labels: {
-                style: {
-                    cssClass: "grey--text lighten-2--text fill-color",
-                },
-            },
-        },
-        stroke: {
-            show: true,
-            width: 5,
-            lineCap: "butt",
-            colors: ["transparent"],
-        },
-        tooltip: {
-            theme: "dark",
-        },
-    };
-    const seriessalesoverview = [
+    //     colors: ["#fb9678", "#03c9d7"],
+    //     fill: {
+    //         type: "solid",
+    //         opacity: 1,
+    //     },
+    //     chart: {
+    //         offsetX: -15,
+    //         toolbar: {
+    //             show: false,
+    //         },
+    //         foreColor: "#adb0bb",
+    //         fontFamily: "'DM Sans',sans-serif",
+    //         sparkline: {
+    //             enabled: false,
+    //         },
+    //     },
+    //     dataLabels: {
+    //         enabled: false,
+    //     },
+    //     markers: {
+    //         size: 0,
+    //     },
+    //     legend: {
+    //         show: false,
+    //     },
+    //     xaxis: {
+    //         type: "category",
+    //         categories: [
+    //             "Jan",
+    //             "Feb",
+    //             "Mar",
+    //             "Apr",
+    //             "May",
+    //             "Jun",
+    //             "July",
+    //             "Aug",
+    //             "Sept",
+    //             "Oct",
+    //             "Nov",
+    //             "Dec",
+    //         ],
+    //         labels: {
+    //             style: {
+    //                 cssClass: "grey--text lighten-2--text fill-color",
+    //             },
+    //         },
+    //     },
+    //     yaxis: {
+    //         show: true,
+    //         min: 0,
+    //         max: max,
+    //         tickAmount: 3,
+    //         labels: {
+    //             style: {
+    //                 cssClass: "grey--text lighten-2--text fill-color",
+    //             },
+    //         },
+    //     },
+    //     stroke: {
+    //         show: true,
+    //         width: 5,
+    //         lineCap: "butt",
+    //         colors: ["transparent"],
+    //     },
+    //     tooltip: {
+    //         theme: "dark",
+    //     },
+    // };
+    // const seriessalesoverview = [
+    //     {
+    //         name: "No. of Products",
+    //         data: [produc[0], produc[1], produc[2], produc[3], produc[4], produc[5], produc[6], produc[7], produc[8], produc[9], produc[10], produc[11]],
+    //     },
+    //     {
+    //         name: "Revenue",
+    //         data: [revenue[0], revenue[1], revenue[2], revenue[3], revenue[4], revenue[5], revenue[6], revenue[7], revenue[8], revenue[9], revenue[10], revenue[11]],
+    //     },
+    // ];
+
+    let data = [
+
         {
-            name: "No. of Products",
-            data: [produc[0], produc[1], produc[2], produc[3], produc[4], produc[5], produc[6], produc[7], produc[8], produc[9], produc[10], produc[11]],
+            "id": "No. of Products",
+            "color": "hsl(138, 70%, 50%)",
+            "data": [
+                {
+                    "x": "Jan",
+                    "y": produc[0]
+                },
+                {
+                    "x": "Feb",
+                    "y": produc[1]
+                },
+                {
+                    "x": "Mar",
+                    "y": produc[2]
+                },
+                {
+                    "x": "Apr",
+                    "y": produc[3]
+                },
+                {
+                    "x": "May",
+                    "y": produc[4]
+                },
+                {
+                    "x": "Jun",
+                    "y": produc[5]
+                },
+                {
+                    "x": "Jul",
+                    "y": produc[6]
+                },
+                {
+                    "x": "Aug",
+                    "y": produc[7]
+                },
+                {
+                    "x": "Sep",
+                    "y": produc[8]
+                },
+                {
+                    "x": "Oct",
+                    "y": produc[9]
+                },
+                {
+                    "x": "Nov",
+                    "y": produc[10]
+                },
+                {
+                    "x": "Dec",
+                    "y": produc[11]
+                }
+            ]
         },
         {
-            name: "Revenue",
-            data: [revenue[0], revenue[1], revenue[2], revenue[3], revenue[4], revenue[5], revenue[6], revenue[7], revenue[8], revenue[9], revenue[10], revenue[11]],
-        },
-    ];
+            "id": "Revenue",
+            "color": "hsl(301, 70%, 50%)",
+            "data": [
+                {
+                    "x": "Jan",
+                    "y": revenue[0]
+                },
+                {
+                    "x": "Feb",
+                    "y": revenue[1]
+                },
+                {
+                    "x": "Mar",
+                    "y": revenue[2]
+                },
+                {
+                    "x": "Apr",
+                    "y": revenue[3]
+                },
+                {
+                    "x": "May",
+                    "y": revenue[4]
+                },
+                {
+                    "x": "Jun",
+                    "y": revenue[5]
+                },
+                {
+                    "x": "Jul",
+                    "y": revenue[6]
+                },
+                {
+                    "x": "Aug",
+                    "y": revenue[7]
+                },
+                {
+                    "x": "Sep",
+                    "y": revenue[8]
+                },
+                {
+                    "x": "Oct",
+                    "y": revenue[9]
+                },
+                {
+                    "x": "Nov",
+                    "y": revenue[10]
+                },
+                {
+                    "x": "Dec",
+                    "y": revenue[11]
+                }
+            ]
+        }
+    ]
 
     return (
 
@@ -354,20 +472,100 @@ const Index = ({ orders, bestSellingproduct }) => {
             `}</style> */}
 
                 <FullLayout>
-                    <Grid container spacing={0}>
-                        <Grid item xs={12} lg={12}>
+
+                    <Grid>
+                        {/* <Grid item xs={12} lg={12}> */}
 
 
-                            <BaseCard title="Sales Overview">
+                        {/* <BaseCard title="Sales Overview">
                                 <Chart
                                     options={optionssalesoverview}
                                     series={seriessalesoverview}
                                     type="bar"
                                     height="295px"
                                 />
-                            </BaseCard>
+                            </BaseCard> */}
 
-                        </Grid>
+
+
+                        <Box height="360px">
+                            <div className=" font-semibold">OVERVIEW</div>
+                            <div className=" text-sm font-light">Sales overview of this year revenue</div>
+
+                            <ResponsiveLine
+                                data={data}
+                                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+                                xScale={{ type: 'point' }}
+                                yScale={{
+                                    type: 'linear',
+                                    min: 'auto',
+                                    max: 'auto',
+                                    stacked: true,
+                                    reverse: false
+                                }}
+                                yFormat=" >-.2f"
+                                axisTop={null}
+                                axisRight={null}
+                                axisBottom={{
+                                    orient: 'bottom',
+                                    tickSize: 5,
+                                    tickPadding: 5,
+                                    tickRotation: 0,
+                                    legend: 'Months',
+                                    legendOffset: 36,
+                                    legendPosition: 'middle'
+                                }}
+                                axisLeft={{
+                                    orient: 'left',
+                                    tickSize: 5,
+                                    tickPadding: 5,
+                                    tickRotation: 0,
+                                    // legend: 'Rupess',
+                                    legendOffset: -40,
+                                    legendPosition: 'middle'
+                                }}
+                                lineWidth={1}
+                                pointSize={7}
+                                pointColor={{ theme: 'background' }}
+                                pointBorderWidth={2}
+                                pointBorderColor={{ from: 'serieColor' }}
+                                pointLabelYOffset={-18}
+                                areaOpacity={0.15}
+                                useMesh={true}
+                                legends={[
+                                    {
+                                        anchor: 'bottom-right',
+                                        direction: 'column',
+                                        justify: false,
+                                        translateX: 100,
+                                        translateY: 0,
+                                        itemsSpacing: 0,
+                                        itemDirection: 'left-to-right',
+                                        itemWidth: 80,
+                                        itemHeight: 20,
+                                        itemOpacity: 0.75,
+                                        symbolSize: 12,
+                                        symbolShape: 'circle',
+                                        symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                                        effects: [
+                                            {
+                                                on: 'hover',
+                                                style: {
+                                                    itemBackground: 'rgba(0, 0, 0, .03)',
+                                                    itemOpacity: 1
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]}
+                            />
+
+                        </Box>
+
+
+
+
+                        {/* </Grid> */}
 
                         <Grid item xs={12} lg={12}>
 
@@ -537,6 +735,8 @@ const Index = ({ orders, bestSellingproduct }) => {
 
 
                         </Grid>
+
+
                     </Grid>
                 </FullLayout>
             </ThemeProvider>

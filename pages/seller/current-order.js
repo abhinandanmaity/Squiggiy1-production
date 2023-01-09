@@ -358,6 +358,8 @@ const CurrentOrder = ({ userorders, user, order }) => {
                                     </TimelineItem>
 
                                 </Timeline>
+
+                                <div className='font-semibold'>Total Amount: ₹ {order.amount}</div>
                             </BaseCard>
 
                         </Grid>
@@ -404,7 +406,6 @@ const CurrentOrder = ({ userorders, user, order }) => {
                                     {/* <div className="flex w-full justify-center items-center md:justify-start md:items-start">
                                         <button className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800">Edit Details</button>
                                     </div> */}
-
 
                                 </div>
                             </div>

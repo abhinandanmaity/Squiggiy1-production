@@ -7,7 +7,7 @@ const Footer = () => {
       <Typography>
         © 2023 All rights reserved by{" "}
         <Link href="#">
-          <a>Squiggiy.com</a>
+          <a>squiggiy.netify.app</a>
         </Link>{" "}
       </Typography>
     </Box>

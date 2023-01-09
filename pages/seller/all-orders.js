@@ -23,6 +23,7 @@ import mongoose from 'mongoose'
 import jsCookie from 'js-cookie'
 import Link from 'next/link';
 import Product from '../../models/Product';
+import { DataGrid } from "@mui/x-data-grid";
 
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../src/theme/theme";
@@ -33,53 +34,136 @@ import FullLayout from "../../src/layouts/FullLayout";
 
 const AllOrders = ({ orders }) => {
 
-    let id = 1;
+    let id = 0;
     const result = {};
     const [page, setPage] = useState(1);
     // console.log(orders)
 
-    let i = (page * 5) - 1;
+    // let i = (page * 5) - 1;
+    let i = 0;
     let j = (page * 5) - 5;
     for (const item in orders) {
 
-        if (i == j - 1) {
-            break
-        }
+        // if (i == j - 1) {
+        //     break
+        // }
 
-        if (Object.keys(orders).length > i) {
+        // if (Object.keys(orders).length > i) {
 
-            result[item] = orders[i]
-        }
-        i--;
+        result[item] = orders[i]
+        // }
+        i++;
 
     }
     // Object.keys(result).reverse()
 
     // console.log(result)
 
-    React.useEffect(() => {
+    // React.useEffect(() => {
 
-        let i = (page * 5) - 1;
-        let j = (page * 5) - 5;
-        result = [];
-        for (const item in orders) {
+    //     let i = (page * 5) - 1;
+    //     let j = (page * 5) - 5;
+    //     result = [];
+    //     for (const item in orders) {
 
-            if (i == j - 1) {
-                break
+    //         if (i == j - 1) {
+    //             break
+    //         }
+
+    //         if (Object.keys(orders).length > i) {
+
+    //             result[item] = orders[i]
+    //         }
+    //         i--;
+    //     }
+
+    //     // console.log(i)
+    //     // result.reverse()
+
+    // }, [page]);
+
+
+    const columns = [
+
+        {
+            field: "id",
+            headerName: "ID",
+            flex: 0.1,
+        },
+        {
+            field: "userphone",
+            headerName: "Phone Number",
+            flex: 0.6,
+        },
+        {
+            field: "shippingaddress",
+            headerName: "Address",
+            flex: 1,
+        },
+        {
+            field: "paymentstatus",
+            headerName: "Payment",
+            flex: 0.7,
+        },
+        {
+            field: "deliverystatus",
+            headerName: "Status",
+            flex: 0.6,
+        },
+        {
+            field: "amount",
+            headerName: "Price",
+            flex: 0.5,
+        },
+        {
+            field: "edit",
+            headerName: "Edit",
+            flex: 0.1,
+            sortable: false,
+            disableClickEventBubbling: true,
+            renderCell: (params) => {
+                return (
+                    <div >
+                        <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/current-order/?id=${params.value}`}>
+                            <BiEditAlt className="cursor-pointer" />
+                        </Link>
+                    </div>
+                )
+            },
+        },
+    ];
+
+    let rows = [];
+
+    {
+        Object.keys(result).map((item) => {
+
+            // console.log(result[item])
+            rows[id] =
+            {
+                id: id + 1,
+                userphone: result[item].userphone,
+                shippingaddress: `${result[item].shippingaddress.address.slice(0, 16)}${result[item].shippingaddress.address.length > 16 ? "..." : ""}, ${result[item].shippingaddress.pincode}`,
+                paymentstatus: result[item].paymentstatus,
+                deliverystatus: result[item].deliverystatus,
+                amount: `₹ ${result[item].amount}`,
+                edit: result[item]._id
+
             }
 
-            if (Object.keys(orders).length > i) {
+            id++;
+        })
+    };
 
-                result[item] = orders[i]
-            }
-            i--;
-        }
+    // rows = [rows]
+    // console.log(rows)
 
-        // console.log(i)
-        // result.reverse()
 
-    }, [page]);
+    // rows.forEach(element => {
 
+    // console.log(element)
+    // console.log(rows[element])
+    // })
 
     return (
 
@@ -94,190 +178,391 @@ const AllOrders = ({ orders }) => {
             <ThemeProvider theme={theme}>
                 <FullLayout>
 
-                    <BaseCard title="Orders" className="">
-                        <Table
-                            aria-label="simple table"
-                            sx={{
-                                mt: 1,
-                                whiteSpace: "nowrap",
-                            }}
-                        >
+                    {/* <div className=" invisible lsm:visible h-0 lsm:h-auto ">
+                        <BaseCard title="Orders" className="">
+                            <Table
+                                aria-label="simple table"
+                                sx={{
+                                    // mt: 1,
+                                    // whiteSpace: "nowrap",
+                                }}
+                            >
 
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Id
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Coustomer
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Address
-                                        </Typography>
-                                    </TableCell>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Id
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Coustomer
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Address
+                                            </Typography>
+                                        </TableCell>
 
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Payment
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Status
-                                        </Typography>
-                                    </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Payment
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Status
+                                            </Typography>
+                                        </TableCell>
 
-                                    <TableCell align="right">
-                                        <Typography color="textSecondary" variant="h6">
-                                            Price
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {Object.keys(result).map((item) => {
+                                        <TableCell align="right">
+                                            <Typography color="textSecondary" variant="h6">
+                                                Price
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {Object.keys(result).map((item) => {
 
-                                    return (
-                                        <TableRow key={result[item]._id}>
-                                            <TableCell>
-                                                <Typography
-                                                    sx={{
-                                                        fontSize: "15px",
-                                                        fontWeight: "500",
-                                                    }}
-                                                >
-                                                    {id++}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Box
-                                                    sx={{
-                                                        display: "flex",
-                                                        alignItems: "center",
-                                                    }}
-                                                >
-                                                    <Box>
-                                                        <Typography
-                                                            variant="h6"
-                                                            sx={{
-                                                                fontWeight: "600",
-                                                            }}
-                                                        >
-                                                            {result[item].userid.slice(0, 15)}{result[item].userid.length > 15 ? "... " : ""}
-                                                        </Typography>
-                                                        <Typography
-                                                            color="textSecondary"
-                                                            sx={{
-                                                                fontSize: "13px",
-                                                            }}
-                                                        >
-                                                            +91 {result[item].userphone}
-                                                        </Typography>
+                                        return (
+                                            <TableRow key={result[item]._id}>
+                                                <TableCell>
+                                                    <Typography
+                                                        sx={{
+                                                            fontSize: "15px",
+                                                            fontWeight: "500",
+                                                        }}
+                                                    >
+                                                        {id++}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Box
+                                                        sx={{
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                        }}
+                                                    >
+                                                        <Box>
+                                                            <Typography
+                                                                variant="h6"
+                                                                sx={{
+                                                                    fontWeight: "600",
+                                                                }}
+                                                            >
+                                                                {result[item].userid.slice(0, 15)}{result[item].userid.length > 15 ? "... " : ""}
+                                                            </Typography>
+                                                            <Typography
+                                                                color="textSecondary"
+                                                                sx={{
+                                                                    fontSize: "13px",
+                                                                }}
+                                                            >
+                                                                +91 {result[item].userphone}
+                                                            </Typography>
+                                                        </Box>
                                                     </Box>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Typography color="textSecondary" variant="h6">
-                                                    {result[item].shippingaddress.address.slice(0, 16)}{result[item].shippingaddress.address.length > 16 ? "..." : ""}, {result[item].shippingaddress.pincode}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Typography color="textSecondary" variant="h6">
+                                                        {result[item].shippingaddress.address.slice(0, 16)}{result[item].shippingaddress.address.length > 16 ? "..." : ""}, {result[item].shippingaddress.pincode}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
 
-                                                {result[item].paymentstatus === "Case on delivery" ? <Chip
-                                                    sx={{
-                                                        pl: "3px",
-                                                        pr: "3px",
-                                                        backgroundColor: "secondary.main",
-                                                        color: "#fff",
-                                                    }}
-                                                    size="small"
-                                                    label={result[item].paymentstatus}
-                                                ></Chip> : ""}
+                                                    {result[item].paymentstatus === "Case on delivery" ? <Chip
+                                                        sx={{
+                                                            pl: "3px",
+                                                            pr: "3px",
+                                                            backgroundColor: "secondary.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].paymentstatus}
+                                                    ></Chip> : ""}
 
-                                                {result[item].paymentstatus === "Paid" ? <Chip
-                                                    sx={{
-                                                        pl: "3px",
-                                                        pr: "3px",
-                                                        backgroundColor: "success.main",
-                                                        color: "#fff",
-                                                    }}
-                                                    size="small"
-                                                    label={result[item].paymentstatus}
-                                                ></Chip> : ""}
+                                                    {result[item].paymentstatus === "Paid" ? <Chip
+                                                        sx={{
+                                                            pl: "3px",
+                                                            pr: "3px",
+                                                            backgroundColor: "success.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].paymentstatus}
+                                                    ></Chip> : ""}
 
-                                            </TableCell>
-                                            <TableCell>
+                                                </TableCell>
+                                                <TableCell>
 
-                                                {result[item].deliverystatus === "Cancle" ? <Chip
-                                                    sx={{
-                                                        pl: "3px",
-                                                        pr: "3px",
-                                                        backgroundColor: "error.main",
-                                                        color: "#fff",
-                                                    }}
-                                                    size="small"
-                                                    label={result[item].deliverystatus}
-                                                ></Chip> : ""}
+                                                    {result[item].deliverystatus === "Cancle" ? <Chip
+                                                        sx={{
+                                                            pl: "3px",
+                                                            pr: "3px",
+                                                            backgroundColor: "error.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
 
-                                                {result[item].deliverystatus === "Delivered" ? <Chip
-                                                    sx={{
-                                                        pl: "3px",
-                                                        pr: "3px",
-                                                        backgroundColor: "success.main",
-                                                        color: "#fff",
-                                                    }}
-                                                    size="small"
-                                                    label={result[item].deliverystatus}
-                                                ></Chip> : ""}
+                                                    {result[item].deliverystatus === "Delivered" ? <Chip
+                                                        sx={{
+                                                            pl: "3px",
+                                                            pr: "3px",
+                                                            backgroundColor: "success.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
 
-                                                {result[item].deliverystatus === "OutOfDelivery" ? <Chip
-                                                    sx={{
-                                                        pl: "3px",
-                                                        pr: "3px",
-                                                        backgroundColor: "secondary.main",
-                                                        color: "#fff",
-                                                    }}
-                                                    size="small"
-                                                    label={result[item].deliverystatus}
-                                                ></Chip> : ""}
-                                                {result[item].deliverystatus === "Initiate" ? <Chip
-                                                    sx={{
-                                                        pl: "3px",
-                                                        pr: "3px",
-                                                        backgroundColor: "primary.main",
-                                                        color: "#fff",
-                                                    }}
-                                                    size="small"
-                                                    label={result[item].deliverystatus}
-                                                ></Chip> : ""}
-                                            </TableCell>
+                                                    {result[item].deliverystatus === "OutOfDelivery" ? <Chip
+                                                        sx={{
+                                                            pl: "3px",
+                                                            pr: "3px",
+                                                            backgroundColor: "secondary.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
+                                                    {result[item].deliverystatus === "Initiate" ? <Chip
+                                                        sx={{
+                                                            pl: "3px",
+                                                            pr: "3px",
+                                                            backgroundColor: "primary.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
+                                                </TableCell>
 
-                                            <TableCell align="right">
-                                                <Typography variant="h6">₹ {result[item].amount}</Typography>
-                                            </TableCell>
-                                            <TableCell align="right">
+                                                <TableCell align="right">
+                                                    <Typography variant="h6">₹ {result[item].amount}</Typography>
+                                                </TableCell>
+                                                <TableCell align="right">
 
-                                                {result[item].deliverystatus != "Cancle" || result[item].deliverystatus != "Delivered" ? <div >
-                                                    <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/current-order/?id=${result[item]._id}`}>
-                                                        <BiEditAlt className="cursor-pointer" />
-                                                    </Link>
-                                                </div> : <div></div>}
-                                            </TableCell>
-                                        </TableRow>
-                                    )
-                                })}
+                                                    {result[item].deliverystatus != "Cancle" || result[item].deliverystatus != "Delivered" ? <div >
+                                                        <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/current-order/?id=${result[item]._id}`}>
+                                                            <BiEditAlt className="cursor-pointer" />
+                                                        </Link>
+                                                    </div> : <div></div>}
+                                                </TableCell>
+                                            </TableRow>
+                                        )
+                                    })}
 
-                            </TableBody>
-                        </Table>
-                    </BaseCard>
+                                </TableBody>
+                            </Table>
+                        </BaseCard>
+                    </div> */}
 
 
-                    {Object.keys(orders).length > 5 ?
+                    {/* <div className=" visible lsm:invisible h-auto lsm:h-0 ">
+                        <BaseCard title="Orders" className="">
+                            <Table
+                                aria-label="simple table"
+                                sx={{
+                                    // mt: 1,
+                                }}
+                            >
+
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+                                            }}>
+                                                Id
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+                                            }}>
+                                                Coustomer
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+                                            }}>
+                                                Address
+                                            </Typography>
+                                        </TableCell>
+
+                                        <TableCell>
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+                                            }}>
+                                                Status
+                                            </Typography>
+                                        </TableCell>
+
+                                        <TableCell align="right">
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+                                            }}>
+                                                Price
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {Object.keys(result).map((item) => {
+
+                                        return (
+                                            <TableRow key={result[item]._id}>
+                                                <TableCell>
+                                                    <Typography
+                                                        sx={{
+                                                            fontSize: "9px",
+                                                            fontWeight: "500",
+                                                        }}
+                                                    >
+                                                        {id++}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Box
+                                                        sx={{
+                                                            display: "flex",
+                                                            alignItems: "center",
+                                                        }}
+                                                    >
+                                                        <Box>
+                                                            <Typography
+
+                                                                sx={{
+                                                                    fontSize: "9px",
+                                                                    fontWeight: "600",
+                                                                }}
+                                                            >
+                                                                {result[item].userid.slice(0, 10)}{result[item].userid.length > 10 ? "... " : ""}
+                                                            </Typography>
+                                                            <Typography
+                                                                color="textSecondary"
+                                                                sx={{
+                                                                    fontSize: "9px",
+                                                                }}
+                                                            >
+                                                                +91 {result[item].userphone}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Box>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Typography color="textSecondary" sx={{
+                                                        fontSize: "9px",
+                                                    }}>
+                                                        {result[item].shippingaddress.address.slice(0, 10)}{result[item].shippingaddress.address.length > 10 ? "..." : ""}, {result[item].shippingaddress.pincode}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+
+                                                    {result[item].deliverystatus === "Cancle" ? <Chip
+                                                        sx={{
+                                                            pl: "1px",
+                                                            pr: "1px",
+                                                            backgroundColor: "error.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
+
+                                                    {result[item].deliverystatus === "Delivered" ? <Chip
+                                                        sx={{
+                                                            pl: "1px",
+                                                            pr: "1px",
+                                                            backgroundColor: "success.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
+
+                                                    {result[item].deliverystatus === "OutOfDelivery" ? <Chip
+                                                        sx={{
+                                                            pl: "1px",
+                                                            pr: "1px",
+                                                            backgroundColor: "secondary.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
+                                                    {result[item].deliverystatus === "Initiate" ? <Chip
+                                                        sx={{
+                                                            pl: "1px",
+                                                            pr: "1px",
+                                                            backgroundColor: "primary.main",
+                                                            color: "#fff",
+                                                        }}
+                                                        size="small"
+                                                        label={result[item].deliverystatus}
+                                                    ></Chip> : ""}
+                                                </TableCell>
+
+                                                <TableCell align="right">
+                                                    <Typography sx={{
+                                                        fontSize: "9px",
+                                                        fontWeight: "600",
+                                                    }}>₹ {result[item].amount}</Typography>
+
+                                                    <TableCell align="right">
+
+                                                        {result[item].deliverystatus != "Cancle" || result[item].deliverystatus != "Delivered" ? <div >
+                                                            <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/current-order/?id=${result[item]._id}`}>
+                                                                <BiEditAlt className="cursor-pointer text-sm" />
+                                                            </Link>
+                                                        </div> : <div></div>}
+                                                    </TableCell>
+                                                </TableCell>
+
+                                            </TableRow>
+                                        )
+                                    })}
+
+                                </TableBody>
+                            </Table>
+                        </BaseCard>
+                    </div> */}
+
+
+<div className=" font-semibold">ORDERS</div>
+                        <div className=" text-sm font-light">Orders overview of your products</div>
+
+                    <Box sx={{ height: 475, mt: "1rem" }}>
+                        <DataGrid
+
+                            // getRowId={(rows) => rows.id}
+                            getRowId={rows.forEach((element) => (element.id))}
+                            rows={rows}
+                            columns={columns}
+                            pageSize={7}
+                            rowsPerPageOptions={[7]}
+                        // experimentalFeatures={{ newEditingApi: true }}
+                        />
+                    </Box>
+
+
+                    {/* {Object.keys(orders).length > 5 ?
 
                         <div className="pt-0.5 pb-12 flex justify-end ">
 
@@ -292,7 +577,7 @@ const AllOrders = ({ orders }) => {
                             </Grid>
                         </div>
                         :
-                        <div className=""></div>}
+                        <div className=""></div>} */}
 
                     {Object.keys(orders).length > 0 ?
 

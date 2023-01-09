@@ -21,7 +21,8 @@ import { parseCookies } from 'nookies'
 var jwt = require('jsonwebtoken')
 import mongoose from 'mongoose'
 import jsCookie from 'js-cookie'
-import Link from 'next/link';
+import Link from 'next/link'
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../src/theme/theme";
@@ -78,6 +79,8 @@ const ViewProducts = ({ products }) => {
 
     }, [page]);
 
+
+
     return (
 
         <>
@@ -91,124 +94,275 @@ const ViewProducts = ({ products }) => {
             <ThemeProvider theme={theme}>
                 <FullLayout>
 
-                    <BaseCard title="Products" className="">
-                        <Table
-                            aria-label="simple table"
-                            sx={{
-                                mt: 1,
-                                whiteSpace: "nowrap",
-                            }}
-                        >
+                    <div className=" invisible xsm:visible h-0 xsm:h-auto ">
 
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Id
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Product Name
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Image
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography color="textSecondary" variant="h6">
-                                            Stocks
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        <Typography color="textSecondary" variant="h6">
-                                            Price
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {Object.keys(result).map((item) => {
+                        <BaseCard title="Products" className="">
+                            <Table
+                                aria-label="simple table"
+                                sx={{
+                                    mt: 1,
+                                    // whiteSpace: "nowrap",
+                                }}
+                            >
 
-                                    return (
-                                        <TableRow key={result[item]._id}>
-                                            <TableCell>
-                                                <Typography
-                                                    sx={{
-                                                        fontSize: "15px",
-                                                        fontWeight: "500",
-                                                    }}
-                                                >
-                                                    {id++}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Box
-                                                    sx={{
-                                                        display: "flex",
-                                                        alignItems: "center",
-                                                    }}
-                                                >
-                                                    <Box>
-                                                        <Typography
-                                                            variant="h6"
-                                                            sx={{
-                                                                fontWeight: "600",
-                                                            }}
-                                                        >
-                                                            {result[item].quantity > 0 ? <span className="">
-                                                                {result[item].title.slice(0, 24)}{result[item].title.length > 24 ? "... " : ""} ({result[item].quantity} {result[item].mesure})
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Id
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Product Name
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Image
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" variant="h6">
+                                                Stocks
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Typography color="textSecondary" variant="h6">
+                                                Price
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {Object.keys(result).map((item) => {
 
-                                                            </span> : <span className="">
-                                                                {result[item].title.slice(0, 24)}{result[item].title.length > 24 ? "... " : ""}
+                                        return (
+                                            <TableRow key={result[item]._id}>
+                                                <TableCell>
+                                                    <Typography
+                                                        sx={{
+                                                            fontSize: "15px",
+                                                            fontWeight: "500",
 
-                                                            </span>}
-                                                        </Typography>
-                                                        <Typography
-                                                            color="textSecondary"
-                                                            sx={{
-                                                                fontSize: "13px",
-                                                            }}
-                                                        >
-                                                            {result[item].category == "all" ? "Grocery" : ""}
-                                                            {result[item].category == "veg" ? "Vegetable" : ""}
-                                                            {result[item].category == "dairy" ? "Dairy" : ""}
-                                                        </Typography>
+
+                                                        }}
+                                                    >
+                                                        {id++}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Box
+                                                        sx={{
+                                                            display: "flex",
+                                                            alignItems: "center",
+
+                                                        }}
+                                                    >
+                                                        <Box>
+                                                            <Typography
+                                                                variant="h6"
+                                                                sx={{
+                                                                    fontWeight: "600",
+
+                                                                }}
+                                                            >
+                                                                {result[item].quantity > 0 ? <span className="">
+                                                                    {result[item].title.slice(0, 24)}{result[item].title.length > 24 ? "... " : ""} ({result[item].quantity} {result[item].mesure})
+
+                                                                </span> : <span className="">
+                                                                    {result[item].title.slice(0, 24)}{result[item].title.length > 24 ? "... " : ""}
+
+                                                                </span>}
+                                                            </Typography>
+                                                            <Typography
+                                                                color="textSecondary"
+                                                                sx={{
+                                                                    fontSize: "13px",
+                                                                }}
+                                                            >
+                                                                {result[item].category == "all" ? "Grocery" : ""}
+                                                                {result[item].category == "veg" ? "Vegetable" : ""}
+                                                                {result[item].category == "dairy" ? "Dairy" : ""}
+                                                            </Typography>
+                                                        </Box>
                                                     </Box>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Typography color="textSecondary" variant="h6">
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Typography color="textSecondary" variant="h6">
 
-                                                    <img src={result[item].img} alt="squiggiy" className=" w-14 h-14"/>
-                                                    
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Typography color="textSecondary" variant="h6">
-                                                    {result[item].avalibleQty}
-                                                </Typography>
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                <Typography variant="h6">₹ {result[item].price}</Typography>
-                                            </TableCell>
-                                            <TableCell align="right">
+                                                        <img src={result[item].img} alt="squiggiy" className=" w-14 h-14" />
 
-                                                <div >
-                                                    <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/update/?id=${result[item]._id}`}>
-                                                        <BiEditAlt className="cursor-pointer" />
-                                                    </Link>
-                                                </div>
-                                            </TableCell>
-                                        </TableRow>
-                                    )
-                                })}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Typography color="textSecondary" variant="h6">
+                                                        {result[item].avalibleQty}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell align="right">
+                                                    <Typography variant="h6">₹ {result[item].price}</Typography>
+                                                </TableCell>
+                                                <TableCell align="right">
 
-                            </TableBody>
-                        </Table>
-                    </BaseCard>
+                                                    <div >
+                                                        <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/update/?id=${result[item]._id}`}>
+                                                            <BiEditAlt className="cursor-pointer" />
+                                                        </Link>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                        )
+                                    })}
+
+                                </TableBody>
+                            </Table>
+                        </BaseCard>
+                    </div>
+
+
+                    <div className=" visible xsm:invisible h-auto xsm:h-0">
+
+                        <BaseCard title="Products" className="">
+                            <Table
+                                aria-label="simple table"
+                                sx={{
+                                    // mt: 1,
+                                    // whiteSpace: "nowrap",
+                                }}
+                            >
+
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+                                            }}>
+                                                Id
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary"
+                                                sx={{
+                                                    fontSize: "10px",
+                                                    fontWeight: "500",
+
+                                                }}
+                                            >
+                                                Product Name
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+
+                                            }}>
+                                                Stock
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Typography color="textSecondary" sx={{
+                                                fontSize: "10px",
+                                                fontWeight: "500",
+
+                                            }}>
+                                                Price
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {Object.keys(result).map((item) => {
+
+                                        return (
+                                            <TableRow key={result[item]._id}>
+                                                <TableCell>
+                                                    <Typography
+                                                        sx={{
+                                                            fontSize: "9px",
+                                                            fontWeight: "600",
+
+                                                        }}
+                                                    >
+                                                        {id++}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Box
+                                                        sx={{
+                                                            display: "flex",
+                                                            alignItems: "center",
+
+                                                        }}
+                                                    >
+                                                        <Box>
+                                                            <Typography
+
+                                                                sx={{
+                                                                    fontSize: "9px",
+                                                                    fontWeight: "600",
+
+                                                                }}
+                                                            >
+                                                                {result[item].quantity > 0 ? <span className="">
+                                                                    {result[item].title.slice(0, 24)}{result[item].title.length > 24 ? "... " : ""} ({result[item].quantity} {result[item].mesure})
+
+                                                                </span> : <span className="">
+                                                                    {result[item].title.slice(0, 24)}{result[item].title.length > 24 ? "... " : ""}
+
+                                                                </span>}
+                                                            </Typography>
+                                                            <Typography
+                                                                color="textSecondary"
+                                                                sx={{
+                                                                    fontSize: "9px",
+                                                                }}
+                                                            >
+                                                                {result[item].category == "all" ? "Grocery" : ""}
+                                                                {result[item].category == "veg" ? "Vegetable" : ""}
+                                                                {result[item].category == "dairy" ? "Dairy" : ""}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Box>
+                                                </TableCell>
+
+                                                <TableCell>
+                                                    <Typography color="textSecondary" sx={{
+                                                        fontSize: "9px",
+
+                                                    }}>
+                                                        {result[item].avalibleQty}
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell align="right">
+                                                    <Typography sx={{
+                                                        fontSize: "9px",
+
+                                                    }}>₹ {result[item].price}</Typography>
+
+                                                    <TableCell align="right">
+
+                                                        <div >
+                                                            <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/seller/update/?id=${result[item]._id}`}>
+                                                                <BiEditAlt className="cursor-pointer text-xs" />
+                                                            </Link>
+                                                        </div>
+                                                    </TableCell>
+                                                </TableCell>
+
+                                            </TableRow>
+                                        )
+                                    })}
+
+                                </TableBody>
+                            </Table>
+                        </BaseCard>
+                    </div>
+
 
                     {products.length > 0 ?
 

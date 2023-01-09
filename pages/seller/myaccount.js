@@ -308,7 +308,7 @@ export async function getServerSideProps(context) {
             pp2 = bytes2.toString(CryptoJS.enc.Utf8)
             user.paytm_mkey = pp2
         }
-        if (seller.google_mid) {
+        if (user.google_mid) {
 
             bytes3 = CryptoJS.AES.decrypt(user.google_mid, `${process.env.CRYPTO_SECRET_KEY}`)
             pp3 = bytes3.toString(CryptoJS.enc.Utf8)
