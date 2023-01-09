@@ -104,11 +104,93 @@ const AllOrders = ({ orders }) => {
             field: "paymentstatus",
             headerName: "Payment",
             flex: 0.7,
+            renderCell: (params) => {
+                return (
+
+                    <div>
+
+                        {params.value === "Case on delivery" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "secondary.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+
+                        {params.value === "Paid" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "success.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                    </div>
+
+                )
+            },
         },
         {
             field: "deliverystatus",
             headerName: "Status",
             flex: 0.6,
+            renderCell: (params) => {
+                return (
+                    <div >
+
+                        {params.value === "Cancle" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "error.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                        {params.value === "Delivered" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "success.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                        {params.value === "OutOfDelivery" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "secondary.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+                        {params.value === "Initiate" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "primary.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                    </div>
+                )
+            },
         },
         {
             field: "amount",
@@ -545,8 +627,8 @@ const AllOrders = ({ orders }) => {
                     </div> */}
 
 
-<div className=" font-semibold">ORDERS</div>
-                        <div className=" text-sm font-light">Orders overview of your products</div>
+                    <div className=" font-semibold">ORDERS</div>
+                    <div className=" text-sm font-light">Orders overview of your products</div>
 
                     <Box sx={{ height: 475, mt: "1rem" }}>
                         <DataGrid

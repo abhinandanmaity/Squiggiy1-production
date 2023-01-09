@@ -22,6 +22,7 @@ import {
     Chip,
 } from "@mui/material";
 import Product from '../../models/Product'
+import { DataGrid } from "@mui/x-data-grid";
 
 
 const Myorders = ({ orders, user }) => {
@@ -29,52 +30,211 @@ const Myorders = ({ orders, user }) => {
 
     // console.log(orders)
 
-    let id = 1;
+    let id = 0;
     const result = {};
     const [page, setPage] = useState(1);
     // console.log(orders)
 
-    let i = (page * 5) - 1;
+    // let i = (page * 5) - 1;
+    let i = 0;
     let j = (page * 5) - 5;
     for (const item in orders) {
 
-        if (i == j - 1) {
-            break
-        }
+        // if (i == j - 1) {
+        //     break
+        // }
 
-        if (Object.keys(orders).length > i) {
+        // if (Object.keys(orders).length > i) {
 
-            result[item] = orders[i]
-        }
-        i--;
+        result[item] = orders[i]
+        // }
+        i++;
 
     }
     // Object.keys(result).reverse()
 
     // console.log(result)
 
-    React.useEffect(() => {
+    // React.useEffect(() => {
 
-        let i = (page * 5) - 1;
-        let j = (page * 5) - 5;
-        result = [];
-        for (const item in orders) {
+    //     let i = (page * 5) - 1;
+    //     let j = (page * 5) - 5;
+    //     result = [];
+    //     for (const item in orders) {
 
-            if (i == j - 1) {
-                break
+    //         if (i == j - 1) {
+    //             break
+    //         }
+
+    //         if (Object.keys(orders).length > i) {
+
+    //             result[item] = orders[i]
+    //         }
+    //         i--;
+    //     }
+
+    //     //     console.log(i)
+    //     //     // result.reverse()
+
+    // }, [page]);
+
+
+    const columns = [
+
+        {
+            field: "id",
+            headerName: "ID",
+            flex: 0.1,
+        },
+        {
+            field: "oderid",
+            headerName: "Order ID",
+            flex: 0.7,
+        },
+        {
+            field: "shippingaddress",
+            headerName: "Address",
+            flex: 0.8,
+        },
+        {
+            field: "paymentstatus",
+            headerName: "Payment",
+            flex: 0.8,
+            renderCell: (params) => {
+                return (
+
+                    <div>
+
+                        {params.value === "Case on delivery" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "secondary.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+
+                        {params.value === "Paid" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "success.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                    </div>
+
+                )
+            },
+        },
+        {
+            field: "deliverystatus",
+            headerName: "Status",
+            flex: 0.6,
+            renderCell: (params) => {
+                return (
+                    <div >
+
+                        {params.value === "Cancle" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "error.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                        {params.value === "Delivered" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "success.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                        {params.value === "OutOfDelivery" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "secondary.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+                        {params.value === "Initiate" ? <Chip
+                            sx={{
+                                pl: "3px",
+                                pr: "3px",
+                                backgroundColor: "primary.main",
+                                color: "#fff",
+                            }}
+                            size="small"
+                            label={params.value}
+                        ></Chip> : ""}
+
+                    </div>
+                )
+            },
+
+        },
+        {
+            field: "amount",
+            headerName: "Price",
+            flex: 0.5,
+        },
+        {
+            field: "edit",
+            headerName: "Edit",
+            flex: 0.1,
+            sortable: false,
+            disableClickEventBubbling: true,
+            renderCell: (params) => {
+                return (
+                    <div >
+
+                        <Link href={`${process.env.NEXT_PUBLIC_DOMEN_NAME}/user/order-summaries/?id=${params.value}`}>
+                            <GrView className="cursor-pointer" />
+                        </Link>
+
+                    </div>
+                )
+            },
+        },
+    ];
+
+    let rows = [];
+
+    {
+        Object.keys(result).map((item) => {
+
+            // console.log(result[item].orderid)
+            rows[id] =
+            {
+                id: id + 1,
+                oderid: result[item].orderid,
+                shippingaddress: `${result[item].shippingaddress.address.slice(0, 16)}${result[item].shippingaddress.address.length > 16 ? "..." : ""}, ${result[item].shippingaddress.pincode}`,
+                paymentstatus: result[item].paymentstatus,
+                deliverystatus: result[item].deliverystatus,
+                amount: `₹ ${result[item].amount}`,
+                edit: result[item]._id
+
             }
 
-            if (Object.keys(orders).length > i) {
-
-                result[item] = orders[i]
-            }
-            i--;
-        }
-
-        //     console.log(i)
-        //     // result.reverse()
-
-    }, [page]);
+            id++;
+        })
+    };
 
 
     return (
@@ -96,9 +256,7 @@ const Myorders = ({ orders, user }) => {
 
 
 
-
-
-                    <BaseCard title="" className="">
+                    {/* <BaseCard title="" className="">
                         <Table
                             aria-label="simple table"
                             sx={{
@@ -277,10 +435,23 @@ const Myorders = ({ orders, user }) => {
 
                             </TableBody>
                         </Table>
-                    </BaseCard>
+                    </BaseCard> */}
+
+                    <Box sx={{ height: 475, mt: "1rem", ml: "2rem", mr: "2rem" }}>
+                        <DataGrid
+
+                            // getRowId={(rows) => rows.id}
+                            getRowId={rows.forEach((element) => (element.id))}
+                            rows={rows}
+                            columns={columns}
+                            pageSize={7}
+                            rowsPerPageOptions={[7]}
+                        // experimentalFeatures={{ newEditingApi: true }}
+                        />
+                    </Box>
 
 
-                    {Object.keys(orders).length > 5 ?
+                    {/* {Object.keys(orders).length > 5 ?
 
                         <div className="pt-0.5 pb-12 flex justify-end ">
 
@@ -297,7 +468,7 @@ const Myorders = ({ orders, user }) => {
 
                         :
 
-                        <div className=""></div>}
+                        <div className=""></div>} */}
 
                     {Object.keys(orders).length > 0 ?
 

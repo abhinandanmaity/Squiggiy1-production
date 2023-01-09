@@ -146,7 +146,7 @@ const Ordersummeris = ({ order }) => {
                                         </div>
                                         <div className="flex justify-between w-full">
                                             <p className="text-sm  leading-4 text-gray-800">Shipping Charge</p>
-                                            <p className="text-sm leading-4 text-gray-600">{order.amount} </p>
+                                            <p className="text-sm leading-4 text-gray-600">Free </p>
                                         </div>
                                     </div>
                                     <div className="flex justify-between items-center w-full">
