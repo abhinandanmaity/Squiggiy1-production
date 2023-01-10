@@ -342,7 +342,7 @@ const Index = ({ orders, bestSellingproduct }) => {
     let data = [
 
         {
-            "id": "No. of Products",
+            "id": "No. of Products sell",
             "color": "hsl(138, 70%, 50%)",
             "data": [
                 {

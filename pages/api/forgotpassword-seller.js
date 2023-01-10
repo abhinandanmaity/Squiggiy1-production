@@ -19,8 +19,8 @@ function sendEmail(message) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: "abhinandanmaity1122@gmail.com",
-                pass: "bmcpjexgbolmcrvp"
+                user: "squiggiyofficialmail@gmail.com",
+                pass: "ksadwkdxuleolsvp"
             }
         })
 
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
             const b = 999999992332399;
 
             const message = {
-                from: 'Squiggiy-no-replay@gmail.com',
+                from: 'squiggiyofficialmail@gmail.com',
                 to: user.shopemail,
                 subject: 'Squiggiy - Password Reset',
                 html: `

@@ -12,8 +12,8 @@ function sendEmail(message) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: "abhinandanmaity1122@gmail.com",
-                pass: "bmcpjexgbolmcrvp"
+                user: "squiggiyofficialmail@gmail.com",
+                pass: "ksadwkdxuleolsvp"
             }
         })
 
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         await user.save();
 
         const message = {
-            from: "abhinandanmaity1122@gmail.com",
+            from: "squiggiyofficialmail@gmail.com",
             to: user.email,
             subject: 'Squiggiy - Password Reset Confirmation',
             html: `

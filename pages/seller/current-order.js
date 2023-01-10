@@ -415,191 +415,396 @@ const CurrentOrder = ({ userorders, user, order }) => {
                     <Grid item xs={12} lg={8}>
 
 
-                        <BaseCard title="Products" className="">
-                            <Table
-                                aria-label="simple table"
-                                sx={{
-                                    mt: 1,
-                                    whiteSpace: "nowrap",
-                                }}
-                            >
+                        <div className=" invisible xsm:visible h-0 xsm:h-auto ">
+                            <BaseCard title="Products" className="">
+                                <Table
+                                    aria-label="simple table"
+                                    sx={{
+                                        mt: 1,
+                                        // whiteSpace: "nowrap",
+                                    }}
+                                >
 
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>
-                                            <Typography color="textSecondary" variant="h6">
-                                                Id
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Typography color="textSecondary" variant="h6">
-                                                Product Name
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Typography color="textSecondary" variant="h6">
-                                                Image
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Typography color="textSecondary" variant="h6">
-                                                Qty
-                                            </Typography>
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            <Typography color="textSecondary" variant="h6">
-                                                Price
-                                            </Typography>
-                                        </TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {Object.keys(order.products).map((item) => {
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Typography color="textSecondary" variant="h6">
+                                                    Id
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary" variant="h6">
+                                                    Product Name
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary" variant="h6">
+                                                    Image
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary" variant="h6">
+                                                    Qty
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Typography color="textSecondary" variant="h6">
+                                                    Price
+                                                </Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {Object.keys(order.products).map((item) => {
 
-                                        return (
+                                            return (
 
-                                            order.products[item].productid ?
+                                                order.products[item].productid ?
 
-                                                <Link href={`/product/${order.products[item].productid}`} >
-                                                    <TableRow key={order.products[item].productid} className="cursor-pointer">
-                                                        <TableCell>
-                                                            <Typography
-                                                                sx={{
-                                                                    fontSize: "15px",
-                                                                    fontWeight: "500",
-                                                                }}
-                                                            >
-                                                                {id++}
-                                                            </Typography>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <Box
-                                                                sx={{
-                                                                    display: "flex",
-                                                                    alignItems: "center",
-                                                                }}
-                                                            >
-                                                                <Box>
-                                                                    <Typography
-                                                                        variant="h6"
-                                                                        sx={{
-                                                                            fontWeight: "600",
-                                                                        }}
-                                                                    >
-                                                                        {order.products[item].quantity > 0 ? <span className="">
-                                                                            {order.products[item].title.slice(0, 24)}{order.products[item].title.length > 24 ? "... " : ""} ({order.products[item].quantity} {order.products[item].mesure})
+                                                    <Link href={`/product/${order.products[item].productid}`} >
+                                                        <TableRow key={order.products[item].productid} className="cursor-pointer">
+                                                            <TableCell>
+                                                                <Typography
+                                                                    sx={{
+                                                                        fontSize: "15px",
+                                                                        fontWeight: "500",
+                                                                    }}
+                                                                >
+                                                                    {id++}
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Box
+                                                                    sx={{
+                                                                        display: "flex",
+                                                                        alignItems: "center",
+                                                                    }}
+                                                                >
+                                                                    <Box>
+                                                                        <Typography
+                                                                            variant="h6"
+                                                                            sx={{
+                                                                                fontWeight: "600",
+                                                                            }}
+                                                                        >
+                                                                            {order.products[item].quantity > 0 ? <span className="">
+                                                                                {order.products[item].title.slice(0, 24)}{order.products[item].title.length > 24 ? "... " : ""} ({order.products[item].quantity} {order.products[item].mesure})
 
-                                                                        </span> : <span className="">
-                                                                            {order.products[item].title.slice(0, 24)}{order.products[item].title.length > 24 ? "... " : ""}
+                                                                            </span> : <span className="">
+                                                                                {order.products[item].title.slice(0, 24)}{order.products[item].title.length > 24 ? "... " : ""}
 
-                                                                        </span>}
+                                                                            </span>}
 
-                                                                    </Typography>
-                                                                    <Typography
-                                                                        color="textSecondary"
-                                                                        sx={{
-                                                                            fontSize: "13px",
-                                                                        }}
-                                                                    >
-                                                                        {order.products[item].category == "all" ? "Grocery" : ""}
-                                                                        {order.products[item].category == "veg" ? "Vegetable" : ""}
-                                                                        {order.products[item].category == "dairy" ? "Dairy" : ""}
-                                                                    </Typography>
+                                                                        </Typography>
+                                                                        <Typography
+                                                                            color="textSecondary"
+                                                                            sx={{
+                                                                                fontSize: "13px",
+                                                                            }}
+                                                                        >
+                                                                            {order.products[item].category == "all" ? "Grocery" : ""}
+                                                                            {order.products[item].category == "veg" ? "Vegetable" : ""}
+                                                                            {order.products[item].category == "dairy" ? "Dairy" : ""}
+                                                                        </Typography>
+                                                                    </Box>
                                                                 </Box>
-                                                            </Box>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <Typography color="textSecondary" variant="h6">
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Typography color="textSecondary" variant="h6">
 
-                                                                <img src={order.products[item].img} alt="squiggiy" className=" w-16 h-14" />
+                                                                    <img src={order.products[item].img} alt="squiggiy" className=" w-16 h-14" />
 
-                                                            </Typography>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <Typography color="textSecondary" variant="h6">
-                                                                {order.products[item].qty}
-                                                            </Typography>
-                                                        </TableCell>
-                                                        <TableCell align="right">
-                                                            <Typography variant="h6">₹ {parseInt((order.products[item].price) - (((order.products[item].price) * (order.products[item].discount)) / 100))}</Typography>
-                                                        </TableCell>
-                                                    </TableRow>
-                                                </Link>
-                                                :
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Typography color="textSecondary" variant="h6">
+                                                                    {order.products[item].qty}
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell align="right">
+                                                                <Typography variant="h6">₹ {parseInt((order.products[item].price) - (((order.products[item].price) * (order.products[item].discount)) / 100))}</Typography>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    </Link>
+                                                    :
 
-                                                <Link href={`/product/${order.products.product.slug}`} >
-                                                    <TableRow key={order.products.product.slug} className="cursor-pointer">
-                                                        <TableCell>
-                                                            <Typography
-                                                                sx={{
-                                                                    fontSize: "15px",
-                                                                    fontWeight: "500",
-                                                                }}
-                                                            >
-                                                                {id++}
-                                                            </Typography>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <Box
-                                                                sx={{
-                                                                    display: "flex",
-                                                                    alignItems: "center",
-                                                                }}
-                                                            >
-                                                                <Box>
-                                                                    <Typography
-                                                                        variant="h6"
-                                                                        sx={{
-                                                                            fontWeight: "600",
-                                                                        }}
-                                                                    >
-                                                                        {order.products.product.quantity > 0 ? <span className="">
-                                                                            {order.products.product.title.slice(0, 24)}{order.products.product.title.length > 24 ? "... " : ""} ({order.products.product.quantity} {order.products.product.mesure})
+                                                    <Link href={`/product/${order.products.product.slug}`} >
+                                                        <TableRow key={order.products.product.slug} className="cursor-pointer">
+                                                            <TableCell>
+                                                                <Typography
+                                                                    sx={{
+                                                                        fontSize: "15px",
+                                                                        fontWeight: "500",
+                                                                    }}
+                                                                >
+                                                                    {id++}
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Box
+                                                                    sx={{
+                                                                        display: "flex",
+                                                                        alignItems: "center",
+                                                                    }}
+                                                                >
+                                                                    <Box>
+                                                                        <Typography
+                                                                            variant="h6"
+                                                                            sx={{
+                                                                                fontWeight: "600",
+                                                                            }}
+                                                                        >
+                                                                            {order.products.product.quantity > 0 ? <span className="">
+                                                                                {order.products.product.title.slice(0, 24)}{order.products.product.title.length > 24 ? "... " : ""} ({order.products.product.quantity} {order.products.product.mesure})
 
-                                                                        </span> : <span className="">
-                                                                            {order.products.product.title.slice(0, 24)}{order.products.product.title.length > 24 ? "... " : ""}
+                                                                            </span> : <span className="">
+                                                                                {order.products.product.title.slice(0, 24)}{order.products.product.title.length > 24 ? "... " : ""}
 
-                                                                        </span>}
+                                                                            </span>}
 
-                                                                    </Typography>
-                                                                    <Typography
-                                                                        color="textSecondary"
-                                                                        sx={{
-                                                                            fontSize: "13px",
-                                                                        }}
-                                                                    >
-                                                                        {order.products.product.category == "all" ? "Grocery" : ""}
-                                                                        {order.products.product.category == "veg" ? "Vegetable" : ""}
-                                                                        {order.products.product.category == "dairy" ? "Dairy" : ""}
-                                                                    </Typography>
+                                                                        </Typography>
+                                                                        <Typography
+                                                                            color="textSecondary"
+                                                                            sx={{
+                                                                                fontSize: "13px",
+                                                                            }}
+                                                                        >
+                                                                            {order.products.product.category == "all" ? "Grocery" : ""}
+                                                                            {order.products.product.category == "veg" ? "Vegetable" : ""}
+                                                                            {order.products.product.category == "dairy" ? "Dairy" : ""}
+                                                                        </Typography>
+                                                                    </Box>
                                                                 </Box>
-                                                            </Box>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <Typography color="textSecondary" variant="h6">
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Typography color="textSecondary" variant="h6">
 
-                                                                <img src={order.products[item].img} alt="squiggiy" className=" w-14 h-14" />
+                                                                    <img src={order.products[item].img} alt="squiggiy" className=" w-14 h-14" />
 
-                                                            </Typography>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <Typography color="textSecondary" variant="h6">
-                                                                <span>1</span>
-                                                            </Typography>
-                                                        </TableCell>
-                                                        <TableCell align="right">
-                                                            <Typography variant="h6">₹ {parseInt(order.products.product.price - ((order.products.product.price * order.products.product.discount) / 100))}</Typography>
-                                                        </TableCell>
-                                                    </TableRow>
-                                                </Link>
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Typography color="textSecondary" variant="h6">
+                                                                    <span>1</span>
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell align="right">
+                                                                <Typography variant="h6">₹ {parseInt(order.products.product.price - ((order.products.product.price * order.products.product.discount) / 100))}</Typography>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    </Link>
 
-                                        )
-                                    })}
+                                            )
+                                        })}
 
-                                </TableBody>
-                            </Table>
-                        </BaseCard>
+                                    </TableBody>
+                                </Table>
+                            </BaseCard>
+                        </div>
 
+
+
+                        <div className=" visible xsm:invisible h-auto xsm:h-0">
+                            <BaseCard title="Products" className="">
+                                <Table
+                                    aria-label="simple table"
+                                    sx={{
+                                        mt: 1,
+                                        // whiteSpace: "nowrap",
+                                    }}
+                                >
+
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Typography color="textSecondary"
+                                                    sx={{
+                                                        fontSize: "10px",
+                                                        fontWeight: "500",
+
+                                                    }}>
+                                                    Id
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary" sx={{
+                                                    fontSize: "10px",
+                                                    fontWeight: "500",
+
+                                                }}>
+                                                    Product Name
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography color="textSecondary" sx={{
+                                                    fontSize: "10px",
+                                                    fontWeight: "500",
+
+                                                }}>
+                                                    Qty
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Typography color="textSecondary" sx={{
+                                                    fontSize: "10px",
+                                                    fontWeight: "500",
+
+                                                }}>
+                                                    Price
+                                                </Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {Object.keys(order.products).map((item) => {
+
+                                            return (
+
+                                                order.products[item].productid ?
+
+                                                    <Link href={`/product/${order.products[item].productid}`} >
+                                                        <TableRow key={order.products[item].productid} className="cursor-pointer">
+                                                            <TableCell>
+                                                                <Typography
+                                                                    sx={{
+                                                                        fontSize: "9px",
+                                                                        fontWeight: "600",
+                                                                    }}
+                                                                >
+                                                                    {id++}
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Box
+                                                                    sx={{
+                                                                        display: "flex",
+                                                                        alignItems: "center",
+                                                                    }}
+                                                                >
+                                                                    <Box>
+                                                                        <Typography
+                                                                            variant="h6"
+                                                                            sx={{
+                                                                                fontSize: "9px",
+                                                                                fontWeight: "600",
+                                                                            }}
+                                                                        >
+                                                                            {order.products[item].quantity > 0 ? <span className="">
+                                                                                {order.products[item].title.slice(0, 24)}{order.products[item].title.length > 24 ? "... " : ""} ({order.products[item].quantity} {order.products[item].mesure})
+
+                                                                            </span> : <span className="">
+                                                                                {order.products[item].title.slice(0, 24)}{order.products[item].title.length > 24 ? "... " : ""}
+
+                                                                            </span>}
+
+                                                                        </Typography>
+                                                                        <Typography
+                                                                            color="textSecondary"
+                                                                            sx={{
+                                                                                fontSize: "9px",
+                                                                                // fontWeight: "600",
+                                                                            }}
+                                                                        >
+                                                                            {order.products[item].category == "all" ? "Grocery" : ""}
+                                                                            {order.products[item].category == "veg" ? "Vegetable" : ""}
+                                                                            {order.products[item].category == "dairy" ? "Dairy" : ""}
+                                                                        </Typography>
+                                                                    </Box>
+                                                                </Box>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Typography color="textSecondary" sx={{
+                                                                    fontSize: "9px",
+                                                                    fontWeight: "600",
+
+                                                                }}>
+                                                                    {order.products[item].qty}
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell align="right">
+                                                                <Typography sx={{
+                                                                    fontSize: "9px",
+                                                                    fontWeight: "600",
+
+                                                                }}>₹ {parseInt((order.products[item].price) - (((order.products[item].price) * (order.products[item].discount)) / 100))}</Typography>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    </Link>
+
+                                                    :
+
+                                                    <Link href={`/product/${order.products.product.slug}`} >
+                                                        <TableRow key={order.products.product.slug} className="cursor-pointer">
+                                                            <TableCell>
+                                                                <Typography
+                                                                    sx={{
+                                                                        fontSize: "9px",
+                                                                        fontWeight: "600",
+
+                                                                    }}
+                                                                >
+                                                                    {id++}
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Box
+                                                                    sx={{
+                                                                        display: "flex",
+                                                                        alignItems: "center",
+                                                                    }}
+                                                                >
+                                                                    <Box>
+                                                                        <Typography
+                                                                            sx={{
+                                                                                fontSize: "9px",
+                                                                                fontWeight: "600",
+                                                                            }}
+                                                                        >
+                                                                            {order.products.product.quantity > 0 ? <span className="">
+                                                                                {order.products.product.title.slice(0, 24)}{order.products.product.title.length > 24 ? "... " : ""} ({order.products.product.quantity} {order.products.product.mesure})
+
+                                                                            </span> : <span className="">
+                                                                                {order.products.product.title.slice(0, 24)}{order.products.product.title.length > 24 ? "... " : ""}
+
+                                                                            </span>}
+
+                                                                        </Typography>
+                                                                        <Typography
+                                                                            color="textSecondary"
+                                                                            sx={{
+                                                                                fontSize: "9px",
+                                                                            }}
+                                                                        >
+                                                                            {order.products.product.category == "all" ? "Grocery" : ""}
+                                                                            {order.products.product.category == "veg" ? "Vegetable" : ""}
+                                                                            {order.products.product.category == "dairy" ? "Dairy" : ""}
+                                                                        </Typography>
+                                                                    </Box>
+                                                                </Box>
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                <Typography color="textSecondary" sx={{
+                                                                    fontSize: "9px",
+                                                                }}>
+                                                                    <span>1</span>
+                                                                </Typography>
+                                                            </TableCell>
+                                                            <TableCell align="right">
+                                                                <Typography sx={{
+                                                                    fontSize: "9px",
+                                                                }}
+                                                                >₹ {parseInt(order.products.product.price - ((order.products.product.price * order.products.product.discount) / 100))}</Typography>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    </Link>
+
+                                            )
+                                        })}
+
+                                    </TableBody>
+                                </Table>
+                            </BaseCard>
+                        </div>
 
                         {/* {Object.keys(order.products).length > 5 && <div className="pt-0.5 pb-12 flex justify-end ">
 
