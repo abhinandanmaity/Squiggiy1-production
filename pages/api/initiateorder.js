@@ -36,7 +36,6 @@ export default async function handler(req, res) {
                         else {
                             add = 0;
 
-
                             let order = new Order({ userid: req.body.email, userphone: req.body.userphone, orderid: req.body.oid, products: req.body.cart, shippingaddress: { address: req.body.address, pincode: req.body.pincode, state: req.body.state, city: req.body.city }, amount: req.body.to, paymentstatus: req.body.paymentstatus })
 
                             await order.save();

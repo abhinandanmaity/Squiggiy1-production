@@ -217,6 +217,13 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     "to-fast-properties" "^2.0.0"
 
+"@capacitor/core@latest":
+  "integrity" "sha512-7A2IV9E8umgu9u0fChUTjQJq+Jp25GJZMmWxoQN/nVx/1rcpFJ4m1xo3NPBoIRs+aV7FR+BM17mPrnkKlA8N2g=="
+  "resolved" "https://registry.npmjs.org/@capacitor/core/-/core-4.6.1.tgz"
+  "version" "4.6.1"
+  dependencies:
+    "tslib" "^2.1.0"
+
 "@cloudinary/html@^1.7.0":
   "integrity" "sha512-mGJhEuT7QtwjfONR+sutXTySSnJOLUk9JitkCO4t0Xa6yVCj8MsqDXLAkv6AR1XKrHa2vcEnKlGASgxtnJAfsw=="
   "resolved" "https://registry.npmjs.org/@cloudinary/html/-/html-1.7.0.tgz"
@@ -3094,6 +3101,13 @@
   "version" "3.1.4"
   dependencies:
     "node-forge" "^1.3.1"
+
+"google-pay@^0.0.1":
+  "integrity" "sha512-3kJkWSqJuVX2lv6+kmA05cojcblXL6Ni0T/oAhvO7XaLo7jsJZWbWCoPgs6xlI2Z8CmDMZeX10NMSkYNbkKGew=="
+  "resolved" "https://registry.npmjs.org/google-pay/-/google-pay-0.0.1.tgz"
+  "version" "0.0.1"
+  dependencies:
+    "@capacitor/core" "latest"
 
 "googleapis-common@^5.0.2":
   "integrity" "sha512-RXrif+Gzhq1QAzfjxulbGvAY3FPj8zq/CYcvgjzDbaBNCD6bUl+86I7mUs4DKWHGruuK26ijjR/eDpWIDgNROA=="

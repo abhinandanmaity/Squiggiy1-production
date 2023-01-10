@@ -18,6 +18,7 @@ var jwt = require('jsonwebtoken');
 import Script from 'next/script';
 var CryptoJS = require("crypto-js");
 import GooglePayButton from '@google-pay/button-react'
+// import { google } from '@google-pay/api-client'
 
 
 // const { googlePayClient } = window;
@@ -1302,6 +1303,8 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
     }
 
 
+
+
     return (
 
         <div>
@@ -1395,8 +1398,8 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                                     {pmethod != 'netbank' ? <input onClick={(e) => { handlecheck(e, 'netbank') }}
                                         value={'netbank'} className='cursor-pointer flex flex-col mt-5' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked className='mt-4' value={'netbank'} onClick={(e) => { handlecheck(e, 'netbank') }} />}
 
-                                    {pmethod != 'googlepay' ? <input onClick={(e) => { handlecheck(e, 'googlepay') }}
-                                        value={'googlepay'} className='cursor-pointer flex flex-col' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked value={'googlepay'} onClick={(e) => { handlecheck(e, 'googlepay') }} />}
+                                    {/* {pmethod != 'googlepay' ? <input onClick={(e) => { handlecheck(e, 'googlepay') }}
+                                        value={'googlepay'} className='cursor-pointer flex flex-col' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked value={'googlepay'} onClick={(e) => { handlecheck(e, 'googlepay') }} />} */}
 
                                     {pmethod != 'cod' ? <input onClick={(e) => { handlecheck(e, 'cod') }} value={'cod'} className='cursor-pointer flex flex-col' type="radio" name="pmethod" id="" /> : <MdOutlineRadioButtonChecked value={'cod'} onClick={(e) => { handlecheck(e, 'cod') }} />}
 
@@ -1407,9 +1410,9 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                                         <img src='/image_processing20210128-7750-jldwgy.gif' alt='squiggiy' className='w-32 h-16'></img>
                                     </span>
 
-                                    <span className="font-medium text-sm flex flex-col">
+                                    {/* <span className="font-medium text-sm flex flex-col">
                                         <img src='/Screensh.png' alt='squiggiy' className='w-16 h-6'></img>
-                                    </span>
+                                    </span> */}
 
                                     <span className="font-medium text-sm flex flex-col">
                                         Case on delivery
@@ -1460,20 +1463,20 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                                         <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {to}</span></button>
 
                                     </div>}
-                                    {!product && cart != undefined && pmethod === 'googlepay' && <div className="mx-10 my-4">
+                                    {/* {!product && cart != undefined && pmethod === 'googlepay' && <div className="mx-10 my-4">
                                         <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {to}</span></button>
 
-                                    </div>}
+                                    </div>} */}
 
 
                                     {(product && pmethod === 'netbank') && <div className="mx-10 my-4">
                                         <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {(parseInt((product.price) - (((product.price) * product.discount) / 100)))}</span></button>
 
                                     </div>}
-                                    {(product && pmethod === 'googlepay') && <div className="mx-10 my-4">
+                                    {/* {(product && pmethod === 'googlepay') && <div className="mx-10 my-4">
                                         <button onClick={initiatepayment_googlepay} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {(parseInt((product.price) - (((product.price) * product.discount) / 100)))}</span></button>
 
-                                    </div>}
+                                    </div>} */}
 
                                 </div>
                             </div>

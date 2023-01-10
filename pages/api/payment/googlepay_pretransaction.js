@@ -83,6 +83,7 @@ export default async function handler(req, res) {
                     a = 0;
 
 
+                    
 
                     // initiate order
                     let order = new Order({ userid: req.body.email, userphone: req.body.userphone, orderid: req.body.oid, products: req.body.cart, shippingaddress: { address: req.body.address, pincode: req.body.pincode, state: req.body.state, city: req.body.city }, amount: req.body.to })

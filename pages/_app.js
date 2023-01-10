@@ -175,7 +175,6 @@ function MyApp({ Component, pageProps }) {
 
       {user.roll != "seller" && <Navbar logout={logout} user={user} key={key} token={token} />}
 
-
       <Component user={user} logout={logout} {...pageProps} />
 
       {user.roll != "seller" && <Footer user={user}/>}
