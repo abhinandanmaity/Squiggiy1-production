@@ -957,62 +957,62 @@ export async function getServerSideProps(context) {
 
 
     let bestSellingproduct = {}
-    // let k = 0;
-    // for (let item of order) {
+    let k = 0;
+    for (let item of order) {
 
-    //     // console.log(new Date().getFullYear())
-    //     // console.log(item.oiddate.slice(11, 15))
+        // console.log(new Date().getFullYear())
+        // console.log(item.oiddate.slice(11, 15))
 
-    //     if (item.products && item.products.product) {
+        if (item.products && item.products.product) {
 
-    //         // let p = await Product.findOne({ slug: item.products.product.slug })
+            // let p = await Product.findOne({ slug: item.products.product.slug })
 
-    //         if (item.products.product.userid == seller.shopemail) {
+            if (item.products.product.userid == seller.shopemail) {
 
-    //             // if (item.orderid in order) {
-    //             //     if (!orders[item.orderid]) {
-    //             //         orders[item.orderid]
-    //             //     }
-    //             // } else {
-    //             // console.log(item.orderid)
-    //             let product = await Product.findOne({ slug: `${item.products.product.slug}`, userid: seller.shopemail })
+                // if (item.orderid in order) {
+                //     if (!orders[item.orderid]) {
+                //         orders[item.orderid]
+                //     }
+                // } else {
+                // console.log(item.orderid)
+                let product = await Product.findOne({ slug: `${item.products.product.slug}`, userid: seller.shopemail })
 
-    //             // console.log(item.products.product.img = product.img)
-    //             // console.log(product)
+                // console.log(item.products.product.img = product.img)
+                // console.log(product)
 
-    //             if (product) {
+                if (product) {
 
-    //                 item.products.product.img = product.img
-    //                 bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products.product))
-    //                 // console.log(bestSellingproduct[k])
-    //                 k++
-    //                 // }
-    //             }
+                    item.products.product.img = product.img
+                    bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products.product))
+                    // console.log(bestSellingproduct[k])
+                    k++
+                    // }
+                }
 
-    //         }
-    //     } else if (item.products) {
+            }
+        } else if (item.products) {
 
-    //         let pppp;
+            let pppp;
 
-    //         // console.log(item.products)
-    //         for (let ii in item.products) {
+            // console.log(item.products)
+            for (let ii in item.products) {
 
-    //             // console.log(item.products[ii].productid)
+                // console.log(item.products[ii].productid)
 
-    //             let product = await Product.findOne({ slug: `${item.products[ii].productid}`, userid: seller.shopemail })
-    //             // console.log(product.avalibleQty)
-    //             // let oid = item.orderid;
+                let product = await Product.findOne({ slug: `${item.products[ii].productid}`, userid: seller.shopemail })
+                // console.log(product.avalibleQty)
+                // let oid = item.orderid;
 
-    //             if (product) {
-    //                 item.products[ii].img = product.img
-    //                 pppp = product;
-    //                 bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products[ii]))
-    //                 // console.log(bestSellingproduct[k])
-    //                 k++
-    //             }
-    //         }
-    //     }
-    // }
+                if (product) {
+                    item.products[ii].img = product.img
+                    pppp = product;
+                    bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products[ii]))
+                    // console.log(bestSellingproduct[k])
+                    k++
+                }
+            }
+        }
+    }
 
     // console.log(bestSellingproduct)
 
