@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-// import dynamic from "next/dynamic";
-// import BaseCard from '../../src/components/baseCard/BaseCard'
+import dynamic from "next/dynamic";
+import BaseCard from '../../src/components/baseCard/BaseCard'
 import User from '../../models/User';
 import Order from '../../models/Order';
 import Seller from '../../models/Seller';
@@ -35,7 +35,7 @@ const Index = ({ orders, bestSellingproduct }) => {
     // console.log(new Date().getFullYear() == orders[0].oiddate.slice(0, 4))
     // console.log(new Date().getMonth() + 1)
     // console.log(new Date().getHours())
-    // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+    const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
     // const [view, setView] = useState("Jan");
 
@@ -115,7 +115,7 @@ const Index = ({ orders, bestSellingproduct }) => {
             }
         }
     }
-    // // console.log(revenue)
+    // console.log(revenue)
 
     for (let index = 0; index < month.length; index++) {
 
@@ -146,77 +146,77 @@ const Index = ({ orders, bestSellingproduct }) => {
         }
     }
 
-    // let max = 0
-    // for (let index = 0; index < revenue.length; index++) {
+    let max = 0
+    for (let index = 0; index < produc.length; index++) {
 
-    //     if (max < revenue[index]) {
+        if (max < produc[index]) {
 
-    //         max = revenue[index]
-    //     }
-    // }
-    // max = max + 100
+            max = produc[index]
+        }
+    }
+    max = max + 10
 
-    // // console.log(produc)
+    // console.log(produc)
 
-    // let result = []
-    // i = 0
-    // for (let item in bestSellingproduct) {
+    let result = []
+    i = 0
+    for (let item in bestSellingproduct) {
 
-    //     // console.log(item)
-    //     if (!result[bestSellingproduct[item].slug] && !result[bestSellingproduct[item].productid]) {
+        // console.log(item)
+        if (!result[bestSellingproduct[item].slug] && !result[bestSellingproduct[item].productid]) {
 
-    //         if (bestSellingproduct[item].slug) {
+            if (bestSellingproduct[item].slug) {
 
-    //             result[bestSellingproduct[item].slug] = 0
+                result[bestSellingproduct[item].slug] = 0
 
-    //             result[bestSellingproduct[item].slug] += 1
-    //         } else {
+                result[bestSellingproduct[item].slug] += 1
+            } else {
 
-    //             result[bestSellingproduct[item].productid] = 0
+                result[bestSellingproduct[item].productid] = 0
 
-    //             result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
+                result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
 
-    //         }
-    //     } else if (result[bestSellingproduct[item].slug]) {
+            }
+        } else if (result[bestSellingproduct[item].slug]) {
 
-    //         result[bestSellingproduct[item].slug] += 1
-    //     } else {
+            result[bestSellingproduct[item].slug] += 1
+        } else {
 
-    //         result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
-    //     }
-    // }
-    // // console.log(result)
+            result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
+        }
+    }
+    // console.log(result)
 
-    // // result.sort((a, b) => { return result[b] > result[a] })
+    // result.sort((a, b) => { return result[b] > result[a] })
 
-    // // console.log(result)
-    // let MAX = 0
-    // let count = 0
+    // console.log(result)
+    let MAX = 0
+    let count = 0
     let topproduct = []
-    // j = 0
-    // let slug
+    j = 0
+    let slug
 
-    // for (let index = 0; index < 9; index++) {
+    for (let index = 0; index < 9; index++) {
 
-    //     for (const item in result) {
+        for (const item in result) {
 
-    //         // console.log(item)
-    //         if (MAX == 0 || (MAX < result[item] && !topproduct.includes(item))) {
+            // console.log(item)
+            if (MAX == 0 || (MAX < result[item] && !topproduct.includes(item))) {
 
-    //             MAX = result[item]
-    //             slug = item
-    //             count = 1
-    //         }
-    //     }
-    //     MAX = 1
+                MAX = result[item]
+                slug = item
+                count = 1
+            }
+        }
+        MAX = 1
 
-    //     if (count == 1 && !topproduct.includes(slug)) {
+        if (count == 1 && !topproduct.includes(slug)) {
 
-    //         topproduct[j] = slug
-    //         j++
-    //     }
-    // }
-    // // console.log(topproduct)
+            topproduct[j] = slug
+            j++
+        }
+    }
+    // console.log(topproduct)
 
     // for (let index = 0; index < topproduct.length; index++) {
     //     const element = topproduct[index];
@@ -240,164 +240,164 @@ const Index = ({ orders, bestSellingproduct }) => {
     // }
     // console.log(topproduct)
 
-    // const optionssalesoverview = {
-    //     grid: {
-    //         show: true,
-    //         borderColor: "transparent",
-    //         strokeDashArray: 2,
-    //         padding: {
-    //             left: 0,
-    //             right: 0,
-    //             bottom: 0,
-    //         },
-    //     },
-    //     plotOptions: {
-    //         bar: {
-    //             horizontal: false,
-    //             columnWidth: "42%",
-    //             endingShape: "rounded",
-    //             borderRadius: 5,
-    //         },
-    //     },
+    const optionssalesoverview = {
+        grid: {
+            show: true,
+            borderColor: "transparent",
+            strokeDashArray: 2,
+            padding: {
+                left: 0,
+                right: 0,
+                bottom: 0,
+            },
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: "42%",
+                endingShape: "rounded",
+                borderRadius: 5,
+            },
+        },
 
-    //     colors: ["#fb9678", "#03c9d7"],
-    //     fill: {
-    //         type: "solid",
-    //         opacity: 1,
-    //     },
-    //     chart: {
-    //         offsetX: -15,
-    //         toolbar: {
-    //             show: false,
-    //         },
-    //         foreColor: "#adb0bb",
-    //         fontFamily: "'DM Sans',sans-serif",
-    //         sparkline: {
-    //             enabled: false,
-    //         },
-    //     },
-    //     dataLabels: {
-    //         enabled: false,
-    //     },
-    //     markers: {
-    //         size: 0,
-    //     },
-    //     legend: {
-    //         show: false,
-    //     },
-    //     xaxis: {
-    //         type: "category",
-    //         categories: [
-    //             "Jan",
-    //             "Feb",
-    //             "Mar",
-    //             "Apr",
-    //             "May",
-    //             "Jun",
-    //             "July",
-    //             "Aug",
-    //             "Sept",
-    //             "Oct",
-    //             "Nov",
-    //             "Dec",
-    //         ],
-    //         labels: {
-    //             style: {
-    //                 cssClass: "grey--text lighten-2--text fill-color",
-    //             },
-    //         },
-    //     },
-    //     yaxis: {
-    //         show: true,
-    //         min: 0,
-    //         max: max,
-    //         tickAmount: 3,
-    //         labels: {
-    //             style: {
-    //                 cssClass: "grey--text lighten-2--text fill-color",
-    //             },
-    //         },
-    //     },
-    //     stroke: {
-    //         show: true,
-    //         width: 5,
-    //         lineCap: "butt",
-    //         colors: ["transparent"],
-    //     },
-    //     tooltip: {
-    //         theme: "dark",
-    //     },
-    // };
-    // const seriessalesoverview = [
-    //     {
-    //         name: "No. of Products",
-    //         data: [produc[0], produc[1], produc[2], produc[3], produc[4], produc[5], produc[6], produc[7], produc[8], produc[9], produc[10], produc[11]],
-    //     },
-    //     {
-    //         name: "Revenue",
-    //         data: [revenue[0], revenue[1], revenue[2], revenue[3], revenue[4], revenue[5], revenue[6], revenue[7], revenue[8], revenue[9], revenue[10], revenue[11]],
-    //     },
-    // ];
+        colors: ["#fb9678", "#03c9d7"],
+        fill: {
+            type: "solid",
+            opacity: 1,
+        },
+        chart: {
+            offsetX: -15,
+            toolbar: {
+                show: false,
+            },
+            foreColor: "#adb0bb",
+            fontFamily: "'DM Sans',sans-serif",
+            sparkline: {
+                enabled: false,
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        markers: {
+            size: 0,
+        },
+        legend: {
+            show: false,
+        },
+        xaxis: {
+            type: "category",
+            categories: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "July",
+                "Aug",
+                "Sept",
+                "Oct",
+                "Nov",
+                "Dec",
+            ],
+            labels: {
+                style: {
+                    cssClass: "grey--text lighten-2--text fill-color",
+                },
+            },
+        },
+        yaxis: {
+            show: true,
+            min: 0,
+            max: max,
+            tickAmount: 5,
+            labels: {
+                style: {
+                    cssClass: "grey--text lighten-2--text fill-color",
+                },
+            },
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            lineCap: "butt",
+            colors: ["transparent"],
+        },
+        tooltip: {
+            theme: "dark",
+        },
+    };
+    const seriessalesoverview = [
+        {
+            name: "",
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        },
+        {
+            name: "No. of Products salles",
+            data: [produc[0], produc[1], produc[2], produc[3], produc[4], produc[5], produc[6], produc[7], produc[8], produc[9], produc[10], produc[11]],
+        },
+    ];
 
     let data = [
 
-        {
-            "id": "No. of Products sell",
-            "color": "hsl(138, 70%, 50%)",
-            "data": [
-                {
-                    "x": "Jan",
-                    "y": produc[0]
-                },
-                {
-                    "x": "Feb",
-                    "y": produc[1]
-                },
-                {
-                    "x": "Mar",
-                    "y": produc[2]
-                },
-                {
-                    "x": "Apr",
-                    "y": produc[3]
-                },
-                {
-                    "x": "May",
-                    "y": produc[4]
-                },
-                {
-                    "x": "Jun",
-                    "y": produc[5]
-                },
-                {
-                    "x": "Jul",
-                    "y": produc[6]
-                },
-                {
-                    "x": "Aug",
-                    "y": produc[7]
-                },
-                {
-                    "x": "Sep",
-                    "y": produc[8]
-                },
-                {
-                    "x": "Oct",
-                    "y": produc[9]
-                },
-                {
-                    "x": "Nov",
-                    "y": produc[10]
-                },
-                {
-                    "x": "Dec",
-                    "y": produc[11]
-                }
-            ]
-        },
+        // {
+        //     "id": "No. of Products sell",
+        //     "color": "hsl(138, 70%, 50%)",
+        //     "data": [
+        //         {
+        //             "x": "Jan",
+        //             "y": produc[0]
+        //         },
+        //         {
+        //             "x": "Feb",
+        //             "y": produc[1]
+        //         },
+        //         {
+        //             "x": "Mar",
+        //             "y": produc[2]
+        //         },
+        //         {
+        //             "x": "Apr",
+        //             "y": produc[3]
+        //         },
+        //         {
+        //             "x": "May",
+        //             "y": produc[4]
+        //         },
+        //         {
+        //             "x": "Jun",
+        //             "y": produc[5]
+        //         },
+        //         {
+        //             "x": "Jul",
+        //             "y": produc[6]
+        //         },
+        //         {
+        //             "x": "Aug",
+        //             "y": produc[7]
+        //         },
+        //         {
+        //             "x": "Sep",
+        //             "y": produc[8]
+        //         },
+        //         {
+        //             "x": "Oct",
+        //             "y": produc[9]
+        //         },
+        //         {
+        //             "x": "Nov",
+        //             "y": produc[10]
+        //         },
+        //         {
+        //             "x": "Dec",
+        //             "y": produc[11]
+        //         }
+        //     ]
+        // },
         {
             "id": "Revenue",
-            "color": "hsl(301, 70%, 50%)",
+            "color": "hsl(138, 70%, 50%)",
             "data": [
                 {
                     "x": "Jan",
@@ -569,7 +569,7 @@ const Index = ({ orders, bestSellingproduct }) => {
 
                         <Grid item xs={12} lg={12}>
 
-                            <div className="bg-gray-100  flex flex-col justify-center items-center pt-9 sm:pt-12 lg:pt-16 pb-9">
+                            {/* <div className="bg-gray-100  flex flex-col justify-center items-center pt-9 sm:pt-12 lg:pt-16 pb-9">
                                 <div className="2xl:container 2xl:mx-auto flex flex-col justify-center items-center sm:pb-12 lg:pb-0 space-y-4 px-4 md:px-6 2xl:px-0">
                                     <div>
                                         <p className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-9 text-center text-gray-800 ">Top Selling products</p>
@@ -578,7 +578,7 @@ const Index = ({ orders, bestSellingproduct }) => {
                                         <p className="text-sm sm:text-base leading-normal sm:leading-none text-center text-gray-600 ">Explore products that people frequently like most</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <Grid container>
 
@@ -735,6 +735,19 @@ const Index = ({ orders, bestSellingproduct }) => {
 
 
                         </Grid>
+
+                        <BaseCard title="Total no of product sell" 
+                        sx={{
+                            mt: "2rem"
+                            
+                            }}>
+                                <Chart
+                                    options={optionssalesoverview}
+                                    series={seriessalesoverview}
+                                    type="bar"
+                                    height="295px"
+                                />
+                            </BaseCard>
 
 
                     </Grid>
@@ -1014,7 +1027,7 @@ export async function getServerSideProps(context) {
     //     }
     // }
 
-    // console.log(bestSellingproduct)
+    // console.log(bestSellingproduct);
 
     return {
 
