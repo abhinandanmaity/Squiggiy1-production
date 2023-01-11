@@ -339,117 +339,117 @@ const Index = ({ orders, bestSellingproduct }) => {
     //     },
     // ];
 
-    let data = [
+    // let data = [
 
-        {
-            "id": "No. of Products sell",
-            "color": "hsl(138, 70%, 50%)",
-            "data": [
-                {
-                    "x": "Jan",
-                    "y": produc[0]
-                },
-                {
-                    "x": "Feb",
-                    "y": produc[1]
-                },
-                {
-                    "x": "Mar",
-                    "y": produc[2]
-                },
-                {
-                    "x": "Apr",
-                    "y": produc[3]
-                },
-                {
-                    "x": "May",
-                    "y": produc[4]
-                },
-                {
-                    "x": "Jun",
-                    "y": produc[5]
-                },
-                {
-                    "x": "Jul",
-                    "y": produc[6]
-                },
-                {
-                    "x": "Aug",
-                    "y": produc[7]
-                },
-                {
-                    "x": "Sep",
-                    "y": produc[8]
-                },
-                {
-                    "x": "Oct",
-                    "y": produc[9]
-                },
-                {
-                    "x": "Nov",
-                    "y": produc[10]
-                },
-                {
-                    "x": "Dec",
-                    "y": produc[11]
-                }
-            ]
-        },
-        {
-            "id": "Revenue",
-            "color": "hsl(301, 70%, 50%)",
-            "data": [
-                {
-                    "x": "Jan",
-                    "y": revenue[0]
-                },
-                {
-                    "x": "Feb",
-                    "y": revenue[1]
-                },
-                {
-                    "x": "Mar",
-                    "y": revenue[2]
-                },
-                {
-                    "x": "Apr",
-                    "y": revenue[3]
-                },
-                {
-                    "x": "May",
-                    "y": revenue[4]
-                },
-                {
-                    "x": "Jun",
-                    "y": revenue[5]
-                },
-                {
-                    "x": "Jul",
-                    "y": revenue[6]
-                },
-                {
-                    "x": "Aug",
-                    "y": revenue[7]
-                },
-                {
-                    "x": "Sep",
-                    "y": revenue[8]
-                },
-                {
-                    "x": "Oct",
-                    "y": revenue[9]
-                },
-                {
-                    "x": "Nov",
-                    "y": revenue[10]
-                },
-                {
-                    "x": "Dec",
-                    "y": revenue[11]
-                }
-            ]
-        }
-    ]
+    //     {
+    //         "id": "No. of Products sell",
+    //         "color": "hsl(138, 70%, 50%)",
+    //         "data": [
+    //             {
+    //                 "x": "Jan",
+    //                 "y": produc[0]
+    //             },
+    //             {
+    //                 "x": "Feb",
+    //                 "y": produc[1]
+    //             },
+    //             {
+    //                 "x": "Mar",
+    //                 "y": produc[2]
+    //             },
+    //             {
+    //                 "x": "Apr",
+    //                 "y": produc[3]
+    //             },
+    //             {
+    //                 "x": "May",
+    //                 "y": produc[4]
+    //             },
+    //             {
+    //                 "x": "Jun",
+    //                 "y": produc[5]
+    //             },
+    //             {
+    //                 "x": "Jul",
+    //                 "y": produc[6]
+    //             },
+    //             {
+    //                 "x": "Aug",
+    //                 "y": produc[7]
+    //             },
+    //             {
+    //                 "x": "Sep",
+    //                 "y": produc[8]
+    //             },
+    //             {
+    //                 "x": "Oct",
+    //                 "y": produc[9]
+    //             },
+    //             {
+    //                 "x": "Nov",
+    //                 "y": produc[10]
+    //             },
+    //             {
+    //                 "x": "Dec",
+    //                 "y": produc[11]
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         "id": "Revenue",
+    //         "color": "hsl(301, 70%, 50%)",
+    //         "data": [
+    //             {
+    //                 "x": "Jan",
+    //                 "y": revenue[0]
+    //             },
+    //             {
+    //                 "x": "Feb",
+    //                 "y": revenue[1]
+    //             },
+    //             {
+    //                 "x": "Mar",
+    //                 "y": revenue[2]
+    //             },
+    //             {
+    //                 "x": "Apr",
+    //                 "y": revenue[3]
+    //             },
+    //             {
+    //                 "x": "May",
+    //                 "y": revenue[4]
+    //             },
+    //             {
+    //                 "x": "Jun",
+    //                 "y": revenue[5]
+    //             },
+    //             {
+    //                 "x": "Jul",
+    //                 "y": revenue[6]
+    //             },
+    //             {
+    //                 "x": "Aug",
+    //                 "y": revenue[7]
+    //             },
+    //             {
+    //                 "x": "Sep",
+    //                 "y": revenue[8]
+    //             },
+    //             {
+    //                 "x": "Oct",
+    //                 "y": revenue[9]
+    //             },
+    //             {
+    //                 "x": "Nov",
+    //                 "y": revenue[10]
+    //             },
+    //             {
+    //                 "x": "Dec",
+    //                 "y": revenue[11]
+    //             }
+    //         ]
+    //     }
+    // ]
 
     return (
 
