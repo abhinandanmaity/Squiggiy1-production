@@ -99,145 +99,145 @@ const Index = ({ orders, bestSellingproduct }) => {
     }
     // console.log(month)
 
-    let revenue = []
-    let produc = []
+    // let revenue = []
+    // let produc = []
 
-    for (let index = 0; index < month.length; index++) {
+    // for (let index = 0; index < month.length; index++) {
 
-        revenue[index] = 0
-        for (let mindex = 0; mindex < month[index].length; mindex++) {
+    //     revenue[index] = 0
+    //     for (let mindex = 0; mindex < month[index].length; mindex++) {
 
-            // console.log(month[index][mindex].amount)
+    //         // console.log(month[index][mindex].amount)
 
-            if (month[index][mindex]) {
+    //         if (month[index][mindex]) {
 
-                revenue[index] += month[index][mindex].amount
-            }
-        }
-    }
-    // console.log(revenue)
+    //             revenue[index] += month[index][mindex].amount
+    //         }
+    //     }
+    // }
+    // // console.log(revenue)
 
-    for (let index = 0; index < month.length; index++) {
+    // for (let index = 0; index < month.length; index++) {
 
-        produc[index] = 0
-        for (let mindex = 0; mindex < month[index].length; mindex++) {
+    //     produc[index] = 0
+    //     for (let mindex = 0; mindex < month[index].length; mindex++) {
 
-            // console.log(month[index][mindex].amount)
+    //         // console.log(month[index][mindex].amount)
 
-            if (month[index][mindex]) {
+    //         if (month[index][mindex]) {
 
-                // console.log(month[index][mindex].products)
-                if (month[index][mindex].products && month[index][mindex].products.product) {
+    //             // console.log(month[index][mindex].products)
+    //             if (month[index][mindex].products && month[index][mindex].products.product) {
 
-                    produc[index] += 1
-                } else if (month[index][mindex].products) {
+    //                 produc[index] += 1
+    //             } else if (month[index][mindex].products) {
 
-                    // console.log(Object.keys(month[index][mindex].products).length)
-                    let d = Object.keys(month[index][mindex].products).length
-                    Object.keys(month[index][mindex].products).map((item) => {
+    //                 // console.log(Object.keys(month[index][mindex].products).length)
+    //                 let d = Object.keys(month[index][mindex].products).length
+    //                 Object.keys(month[index][mindex].products).map((item) => {
 
-                        // console.log(month[index][mindex].products[item])
-                        d += month[index][mindex].products[item].qty
-                    })
-                    // console.log(d)
-                    produc[index] += d
-                }
-            }
-        }
-    }
+    //                     // console.log(month[index][mindex].products[item])
+    //                     d += month[index][mindex].products[item].qty
+    //                 })
+    //                 // console.log(d)
+    //                 produc[index] += d
+    //             }
+    //         }
+    //     }
+    // }
 
-    let max = 0
-    for (let index = 0; index < revenue.length; index++) {
+    // let max = 0
+    // for (let index = 0; index < revenue.length; index++) {
 
-        if (max < revenue[index]) {
+    //     if (max < revenue[index]) {
 
-            max = revenue[index]
-        }
-    }
-    max = max + 100
+    //         max = revenue[index]
+    //     }
+    // }
+    // max = max + 100
 
-    // console.log(produc)
+    // // console.log(produc)
 
-    let result = []
-    i = 0
-    for (let item in bestSellingproduct) {
+    // let result = []
+    // i = 0
+    // for (let item in bestSellingproduct) {
 
-        // console.log(item)
-        if (!result[bestSellingproduct[item].slug] && !result[bestSellingproduct[item].productid]) {
+    //     // console.log(item)
+    //     if (!result[bestSellingproduct[item].slug] && !result[bestSellingproduct[item].productid]) {
 
-            if (bestSellingproduct[item].slug) {
+    //         if (bestSellingproduct[item].slug) {
 
-                result[bestSellingproduct[item].slug] = 0
+    //             result[bestSellingproduct[item].slug] = 0
 
-                result[bestSellingproduct[item].slug] += 1
-            } else {
+    //             result[bestSellingproduct[item].slug] += 1
+    //         } else {
 
-                result[bestSellingproduct[item].productid] = 0
+    //             result[bestSellingproduct[item].productid] = 0
 
-                result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
+    //             result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
 
-            }
-        } else if (result[bestSellingproduct[item].slug]) {
+    //         }
+    //     } else if (result[bestSellingproduct[item].slug]) {
 
-            result[bestSellingproduct[item].slug] += 1
-        } else {
+    //         result[bestSellingproduct[item].slug] += 1
+    //     } else {
 
-            result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
-        }
-    }
-    // console.log(result)
+    //         result[bestSellingproduct[item].productid] += bestSellingproduct[item].qty
+    //     }
+    // }
+    // // console.log(result)
 
-    // result.sort((a, b) => { return result[b] > result[a] })
+    // // result.sort((a, b) => { return result[b] > result[a] })
 
-    // console.log(result)
-    let MAX = 0
-    let count = 0
-    let topproduct = []
-    j = 0
-    let slug
+    // // console.log(result)
+    // let MAX = 0
+    // let count = 0
+    // let topproduct = []
+    // j = 0
+    // let slug
 
-    for (let index = 0; index < 9; index++) {
+    // for (let index = 0; index < 9; index++) {
 
-        for (const item in result) {
+    //     for (const item in result) {
 
-            // console.log(item)
-            if (MAX == 0 || (MAX < result[item] && !topproduct.includes(item))) {
+    //         // console.log(item)
+    //         if (MAX == 0 || (MAX < result[item] && !topproduct.includes(item))) {
 
-                MAX = result[item]
-                slug = item
-                count = 1
-            }
-        }
-        MAX = 1
+    //             MAX = result[item]
+    //             slug = item
+    //             count = 1
+    //         }
+    //     }
+    //     MAX = 1
 
-        if (count == 1 && !topproduct.includes(slug)) {
+    //     if (count == 1 && !topproduct.includes(slug)) {
 
-            topproduct[j] = slug
-            j++
-        }
-    }
-    // console.log(topproduct)
+    //         topproduct[j] = slug
+    //         j++
+    //     }
+    // }
+    // // console.log(topproduct)
 
-    for (let index = 0; index < topproduct.length; index++) {
-        const element = topproduct[index];
+    // for (let index = 0; index < topproduct.length; index++) {
+    //     const element = topproduct[index];
 
-        for (let item in bestSellingproduct) {
+    //     for (let item in bestSellingproduct) {
 
-            if (bestSellingproduct[item].slug) {
+    //         if (bestSellingproduct[item].slug) {
 
-                if (bestSellingproduct[item].slug == element) {
+    //             if (bestSellingproduct[item].slug == element) {
 
-                    topproduct[index] = bestSellingproduct[item]
-                }
-            } else if (bestSellingproduct[item].productid) {
+    //                 topproduct[index] = bestSellingproduct[item]
+    //             }
+    //         } else if (bestSellingproduct[item].productid) {
 
-                if (bestSellingproduct[item].productid == element) {
+    //             if (bestSellingproduct[item].productid == element) {
 
-                    topproduct[index] = bestSellingproduct[item]
-                }
-            }
-        }
-    }
+    //                 topproduct[index] = bestSellingproduct[item]
+    //             }
+    //         }
+    //     }
+    // }
     // console.log(topproduct)
 
     // const optionssalesoverview = {
@@ -957,62 +957,62 @@ export async function getServerSideProps(context) {
 
 
     let bestSellingproduct = {}
-    let k = 0;
-    for (let item of order) {
+    // let k = 0;
+    // for (let item of order) {
 
-        // console.log(new Date().getFullYear())
-        // console.log(item.oiddate.slice(11, 15))
+    //     // console.log(new Date().getFullYear())
+    //     // console.log(item.oiddate.slice(11, 15))
 
-        if (item.products && item.products.product) {
+    //     if (item.products && item.products.product) {
 
-            // let p = await Product.findOne({ slug: item.products.product.slug })
+    //         // let p = await Product.findOne({ slug: item.products.product.slug })
 
-            if (item.products.product.userid == seller.shopemail) {
+    //         if (item.products.product.userid == seller.shopemail) {
 
-                // if (item.orderid in order) {
-                //     if (!orders[item.orderid]) {
-                //         orders[item.orderid]
-                //     }
-                // } else {
-                // console.log(item.orderid)
-                let product = await Product.findOne({ slug: `${item.products.product.slug}`, userid: seller.shopemail })
+    //             // if (item.orderid in order) {
+    //             //     if (!orders[item.orderid]) {
+    //             //         orders[item.orderid]
+    //             //     }
+    //             // } else {
+    //             // console.log(item.orderid)
+    //             let product = await Product.findOne({ slug: `${item.products.product.slug}`, userid: seller.shopemail })
 
-                // console.log(item.products.product.img = product.img)
-                // console.log(product)
+    //             // console.log(item.products.product.img = product.img)
+    //             // console.log(product)
 
-                if (product) {
+    //             if (product) {
 
-                    item.products.product.img = product.img
-                    bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products.product))
-                    // console.log(bestSellingproduct[k])
-                    k++
-                    // }
-                }
+    //                 item.products.product.img = product.img
+    //                 bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products.product))
+    //                 // console.log(bestSellingproduct[k])
+    //                 k++
+    //                 // }
+    //             }
 
-            }
-        } else if (item.products) {
+    //         }
+    //     } else if (item.products) {
 
-            let pppp;
+    //         let pppp;
 
-            // console.log(item.products)
-            for (let ii in item.products) {
+    //         // console.log(item.products)
+    //         for (let ii in item.products) {
 
-                // console.log(item.products[ii].productid)
+    //             // console.log(item.products[ii].productid)
 
-                let product = await Product.findOne({ slug: `${item.products[ii].productid}`, userid: seller.shopemail })
-                // console.log(product.avalibleQty)
-                // let oid = item.orderid;
+    //             let product = await Product.findOne({ slug: `${item.products[ii].productid}`, userid: seller.shopemail })
+    //             // console.log(product.avalibleQty)
+    //             // let oid = item.orderid;
 
-                if (product) {
-                    item.products[ii].img = product.img
-                    pppp = product;
-                    bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products[ii]))
-                    // console.log(bestSellingproduct[k])
-                    k++
-                }
-            }
-        }
-    }
+    //             if (product) {
+    //                 item.products[ii].img = product.img
+    //                 pppp = product;
+    //                 bestSellingproduct[k] = JSON.parse(JSON.stringify(item.products[ii]))
+    //                 // console.log(bestSellingproduct[k])
+    //                 k++
+    //             }
+    //         }
+    //     }
+    // }
 
     // console.log(bestSellingproduct)
 
