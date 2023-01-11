@@ -99,52 +99,52 @@ const Index = ({ orders, bestSellingproduct }) => {
     }
     // console.log(month)
 
-    // let revenue = []
-    // let produc = []
+    let revenue = []
+    let produc = []
 
-    // for (let index = 0; index < month.length; index++) {
+    for (let index = 0; index < month.length; index++) {
 
-    //     revenue[index] = 0
-    //     for (let mindex = 0; mindex < month[index].length; mindex++) {
+        revenue[index] = 0
+        for (let mindex = 0; mindex < month[index].length; mindex++) {
 
-    //         // console.log(month[index][mindex].amount)
+            // console.log(month[index][mindex].amount)
 
-    //         if (month[index][mindex]) {
+            if (month[index][mindex]) {
 
-    //             revenue[index] += month[index][mindex].amount
-    //         }
-    //     }
-    // }
+                revenue[index] += month[index][mindex].amount
+            }
+        }
+    }
     // // console.log(revenue)
 
-    // for (let index = 0; index < month.length; index++) {
+    for (let index = 0; index < month.length; index++) {
 
-    //     produc[index] = 0
-    //     for (let mindex = 0; mindex < month[index].length; mindex++) {
+        produc[index] = 0
+        for (let mindex = 0; mindex < month[index].length; mindex++) {
 
-    //         // console.log(month[index][mindex].amount)
+            // console.log(month[index][mindex].amount)
 
-    //         if (month[index][mindex]) {
+            if (month[index][mindex]) {
 
-    //             // console.log(month[index][mindex].products)
-    //             if (month[index][mindex].products && month[index][mindex].products.product) {
+                // console.log(month[index][mindex].products)
+                if (month[index][mindex].products && month[index][mindex].products.product) {
 
-    //                 produc[index] += 1
-    //             } else if (month[index][mindex].products) {
+                    produc[index] += 1
+                } else if (month[index][mindex].products) {
 
-    //                 // console.log(Object.keys(month[index][mindex].products).length)
-    //                 let d = Object.keys(month[index][mindex].products).length
-    //                 Object.keys(month[index][mindex].products).map((item) => {
+                    // console.log(Object.keys(month[index][mindex].products).length)
+                    let d = Object.keys(month[index][mindex].products).length
+                    Object.keys(month[index][mindex].products).map((item) => {
 
-    //                     // console.log(month[index][mindex].products[item])
-    //                     d += month[index][mindex].products[item].qty
-    //                 })
-    //                 // console.log(d)
-    //                 produc[index] += d
-    //             }
-    //         }
-    //     }
-    // }
+                        // console.log(month[index][mindex].products[item])
+                        d += month[index][mindex].products[item].qty
+                    })
+                    // console.log(d)
+                    produc[index] += d
+                }
+            }
+        }
+    }
 
     // let max = 0
     // for (let index = 0; index < revenue.length; index++) {
