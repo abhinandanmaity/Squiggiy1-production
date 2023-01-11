@@ -8,10 +8,11 @@ const nodemailer = require('nodemailer')
 function sendEmail(message) {
     return new Promise((res, rej) => {
         const transporter = nodemailer.createTransport({
+
             service: 'gmail',
             auth: {
-                user: "squiggiyofficialmail@gmail.com",
-                pass: "ksadwkdxuleolsvp"
+                user: 'squiggiyofficialmail@gmail.com',
+                pass: 'hzkkmunylqmekvxd'
             }
         })
 
@@ -40,7 +41,7 @@ export default async function handler(req, res) {
 
 
         const message = {
-            from: 'squiggiyofficialmail@gmail.com',
+            from: '"Squiggiy " <verify-otp-noreply@gmail.com>',
             to: req.body.shopemail,
             subject: 'Squiggiy - Verify Successfully',
             html: `

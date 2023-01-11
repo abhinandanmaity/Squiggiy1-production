@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 // import BaseCard from '../../src/components/baseCard/BaseCard'
 import User from '../../models/User';
 import Order from '../../models/Order';
@@ -16,7 +16,7 @@ import {
     Card, CardContent, Typography, Button, Grid,
     FormControl, MenuItem, InputLabel, Box, Select
 } from "@mui/material";
-import Image from "next/image"
+// import Image from "next/image"
 import { ResponsiveLine } from '@nivo/line'
 // import { ImageAspectRatioOutlined } from '@mui/icons-material';
 
@@ -37,7 +37,7 @@ const Index = ({ orders, bestSellingproduct }) => {
     // console.log(new Date().getHours())
     // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-    const [view, setView] = useState("Jan");
+    // const [view, setView] = useState("Jan");
 
     let month = [[], [], [], [], [], [], [], [], [], [], [], []]
     let i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0;
