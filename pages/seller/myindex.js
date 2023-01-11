@@ -492,7 +492,7 @@ const Index = ({ orders, bestSellingproduct }) => {
                             <div className=" font-semibold">OVERVIEW</div>
                             <div className=" text-sm font-light">Sales overview of this year revenue</div>
 
-                            <ResponsiveLine
+                            {/* <ResponsiveLine
                                 data={data}
                                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
                                 xScale={{ type: 'point' }}
@@ -558,7 +558,7 @@ const Index = ({ orders, bestSellingproduct }) => {
                                         ]
                                     }
                                 ]}
-                            />
+                            /> */}
 
                         </Box>
 
