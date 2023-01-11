@@ -192,7 +192,7 @@ const Index = ({ orders, bestSellingproduct }) => {
     // // console.log(result)
     // let MAX = 0
     // let count = 0
-    // let topproduct = []
+    let topproduct = []
     // j = 0
     // let slug
 
