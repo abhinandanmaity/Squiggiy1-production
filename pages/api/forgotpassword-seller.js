@@ -15,23 +15,18 @@ const nodemailer = require('nodemailer')
 
 
 function sendEmail(message) {
-
     return new Promise((res, rej) => {
-
         const transporter = nodemailer.createTransport({
-
             service: 'gmail',
             auth: {
-                user: 'squiggiyofficialmail@gmail.com',
-                pass: 'hzkkmunylqmekvxd'
+                user: "squiggiyofficialmail@gmail.com",
+                pass: "ksadwkdxuleolsvp"
             }
         })
 
         transporter.sendMail(message, function (err, info) {
-
             if (err) {
                 rej(err)
-                console.log(err)
             } else {
                 res(info)
             }
@@ -47,8 +42,8 @@ export default async function handler(req, res) {
 
         const user = await Seller.findOne({ shopemail: req.body.email })
 
-        // console.log(user)
-        // console.log(req.body.email)
+        console.log(user)
+        console.log(req.body.email)
         if (user) {
 
             const token = jwt.sign(`${Math.random() * Date.now() * Math.random() * req.body.email}`, process.env.JWT_SECRET_KEY)
@@ -62,7 +57,7 @@ export default async function handler(req, res) {
             const b = 999999992332399;
 
             const message = {
-                from: '"Squiggiy " <reset-password-noreply@gmail.com>',
+                from: 'squiggiyofficialmail@gmail.com',
                 to: user.shopemail,
                 subject: 'Squiggiy - Password Reset',
                 html: `
@@ -72,7 +67,7 @@ export default async function handler(req, res) {
                 <p>If you did not make the request then ignore it.</p>
                 <p></p>
                 <p>To complete the password reset process, visit following link.</p>
-                <p>To reset your account password please follow this <a target="_" href="https://squiggiy.netlify.app/auth/reset-password-seller/${token}/?${(a + (b - a) * Math.random()) * Date.now()}">Link </a> , this is valid for 15 min.</p>
+                <p>To reset your account password please follow this <a target="_" href="http://localhost:3000/auth/reset-password-seller/${token}/?${(a + (b - a) * Math.random()) * Date.now()}">link </a> , this is valid for 15 min.</p>
                 
                 <p>Hurry ! </p>
                 <p>Thanking you, from your Squiggiy Team.</p>

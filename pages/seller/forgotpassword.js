@@ -58,7 +58,7 @@ const Forgotpasswordseller = () => {
 
                 setEmail('');
 
-                toast.error('Email does not exist!', {
+                toast.error('Email does not exist !', {
                     position: "bottom-center",
                     autoClose: 941,
                     hideProgressBar: true,
@@ -156,11 +156,11 @@ export async function getServerSideProps(context) {
 
     if (!global.mongoose && !global.mongoose.conn) {
 
-        // console.log("This is a Existing connection")
+        console.log("This is a Existing connection")
         // return global.mongoose.conn;
     } else {
 
-        // console.log("This is a new connection")
+        console.log("This is a new connection")
         const user = process.env.MONGODB_USER;
         const password = process.env.MONGODB_PASSWORD;
         const database = process.env.MONGO_DATABASE;

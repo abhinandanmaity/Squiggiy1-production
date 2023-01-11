@@ -10,11 +10,10 @@ const nodemailer = require('nodemailer')
 function sendEmail(message) {
     return new Promise((res, rej) => {
         const transporter = nodemailer.createTransport({
-            
             service: 'gmail',
             auth: {
-                user: 'squiggiyofficialmail@gmail.com',
-                pass: 'hzkkmunylqmekvxd'
+                user: "squiggiyofficialmail@gmail.com",
+                pass: "ksadwkdxuleolsvp"
             }
         })
 
@@ -53,7 +52,7 @@ export default async function handler(req, res) {
         // console.log(Date.now())
 
         const message = {
-            from: '"Squiggiy " <request-otp-noreply@gmail.com>',
+            from: "squiggiyofficialmail@gmail.com",
             to: req.body.email,
             subject: 'Otp Verification',
             html: `

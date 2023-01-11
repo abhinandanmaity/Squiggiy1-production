@@ -11,11 +11,10 @@ function sendEmail(message) {
 
     return new Promise((res, rej) => {
         const transporter = nodemailer.createTransport({
-            
             service: 'gmail',
             auth: {
-                user: 'squiggiyofficialmail@gmail.com',
-                pass: 'hzkkmunylqmekvxd'
+                user: "squiggiyofficialmail@gmail.com",
+                pass: "ksadwkdxuleolsvp"
             }
         })
 
@@ -52,7 +51,7 @@ export default async function handler(req, res) {
         await user.save();
 
         const message = {
-            from: '"Squiggiy " <reset-password-noreply@gmail.com>',
+            from: "squiggiyofficialmail@gmail.com",
             to: user.email,
             subject: 'Squiggiy - Password Reset Confirmation',
             html: `
