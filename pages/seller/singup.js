@@ -337,7 +337,7 @@ const Sellersingup = () => {
                         pauseOnHover
                     />
 
-<img src="/white-podium-mockup-display-with-product-presentation-3d-rendering_41470-3963.jpg" alt="" className='w-full h-screen bg-cover bg-no-repeat absolute top-32 xxxs:top-28 xs:top-9 left-0 z-0 blur-sm' />
+                    <img src="/white-podium-mockup-display-with-product-presentation-3d-rendering_41470-3963.jpg" alt="" className='w-full h-screen bg-cover bg-no-repeat absolute top-32 xxxs:top-28 xs:top-9 left-0 z-0 blur-sm' />
 
                     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="max-w-md w-full space-y-8">
@@ -397,7 +397,7 @@ const Sellersingup = () => {
 
                                         <div className="pt-4">
 
-                                            {disable === 'all' ? <button onClick={(e) => { handleclick(e, 'all') }} value={'all'} className="flex flex-col border rounded-md px-9 py-4 bg-pink-100 border-pink-400 " ><BiCategory className='mx-auto text-3xl pb-3 justify-center' />Groceries</button> : <button onClick={(e) => { handleclick(e, 'all') }} value={'all'} className="flex flex-col border border-gray-300 rounded-md px-9 py-4 bg-gray-200" ><BiCategory className='mx-auto text-3xl pb-3 justify-center' />Groceries</button>}
+                                            {disable === 'all' ? <button onClick={(e) => { handleclick(e, 'all') }} value={'all'} className="flex flex-col border rounded-md px-9 py-4 bg-pink-100 border-pink-400 " ><BiCategory className='mx-auto text-3xl pb-3 justify-center' />All Item</button> : <button onClick={(e) => { handleclick(e, 'all') }} value={'all'} className="flex flex-col border border-gray-300 rounded-md px-9 py-4 bg-gray-200" ><BiCategory className='mx-auto text-3xl pb-3 justify-center' />All Item</button>}
                                         </div>
 
                                         <div className="pt-4">
