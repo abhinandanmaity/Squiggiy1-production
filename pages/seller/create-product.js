@@ -683,7 +683,7 @@ export async function getServerSideProps(context) {
 
   // console.log(t)
   // console.log("kjdfjskjkdf")
-  let user = await Seller.findOne({ roll: t.roll, shopemail: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
+  let user = await Seller.findOne({ roll: 'seller', shopemail: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
 
   // console.log(user)
 

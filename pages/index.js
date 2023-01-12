@@ -346,8 +346,8 @@ export async function getServerSideProps(context) {
   let user = undefined, seller = undefined;
   if (t != undefined) {
 
-    user = await User.find({ roll: t.roll, email: t.email })
-    seller = await Seller.findOne({ roll: t.roll, shopemail: t.email })
+    user = await User.find({ roll: "user", email: t.email })
+    seller = await Seller.findOne({ roll: "seller", shopemail: t.email })
   }
 
   if (seller) {
