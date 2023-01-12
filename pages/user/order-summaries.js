@@ -234,7 +234,7 @@ export async function getServerSideProps(context) {
 
     // console.log(t)
     // console.log("kjdfjskjkdf")
-    let user = await User.findOne({ email: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
+    let user = await User.findOne({ roll: t.roll, email: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
     // console.log(context.query.id)
 
     let id = context.query.id

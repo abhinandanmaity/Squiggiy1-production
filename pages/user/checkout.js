@@ -215,6 +215,7 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
             })
         }
 
+
         if (!user.phone) {
 
             toast.error('Try again, after complete your profile.', {
@@ -273,25 +274,70 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                     }
                 }
 
-                const sendform = async () => {
+
+                const checkform = async () => {
 
                     try {
                         // console.log("data")
-                        let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/initiateorder`, data);
+                        let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/checkorder`, data);
                         // console.log(resp.data)
 
-                        if (resp.data.id) {
+                        if (resp.data.success) {
 
-                            // let url = `/user/order-summaries/?id=${resp.data.id}`
-                            // window.location = url;
+                            const sendform = async () => {
 
-                            if (!product) {
+                                try {
+                                    // console.log("data")
+                                    let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/initiateorder`, data);
+                                    // console.log(resp.data)
 
-                                clearcart();
-                            } else {
-                                jsCookie.remove('bn_product')
-                            }
-                            router.push(`/user/order-summaries/?id=${resp.data.id}`);
+                                    if (resp.data.id) {
+
+                                        // let url = `/user/order-summaries/?id=${resp.data.id}`
+                                        // window.location = url;
+
+                                        if (!product) {
+
+                                            clearcart();
+                                        } else {
+                                            jsCookie.remove('bn_product')
+                                        }
+                                        router.push(`/user/order-summaries/?id=${resp.data.id}`);
+
+                                    }
+
+                                } catch (err) {
+
+                                    // // Handle Error Here
+                                    // console.log("error")
+                                    // console.log(err);
+
+                                    if (err.response.data.error) {
+
+                                        toast.error(err.response.data.error, {
+                                            position: "bottom-center",
+                                            autoClose: 941,
+                                            hideProgressBar: true,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                        });
+                                    } else {
+
+                                        toast.error("Check your internet", {
+                                            position: "bottom-center",
+                                            autoClose: 941,
+                                            hideProgressBar: true,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                        });
+                                    }
+                                }
+                            };
+                            sendform();
 
                         }
 
@@ -326,7 +372,8 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                         }
                     }
                 };
-                sendform();
+                checkform();
+
 
 
                 // router.push('/user/order-summaries');
@@ -465,31 +512,78 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                 }
 
 
-                const sendform = async () => {
+                const checkform = async () => {
 
                     try {
                         // console.log("data")
-                        let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/initiateorder`, data);
+                        let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/checkorder`, data);
                         // console.log(resp.data)
 
-                        if (resp.data.id) {
+                        if (resp.data.success) {
 
-                            if (!product) {
+                            const sendform = async () => {
 
-                                clearcart();
-                            } else {
-                                jsCookie.remove('bn_product')
-                            }
+                                try {
+                                    // console.log("data")
+                                    let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/initiateorder`, data);
+                                    // console.log(resp.data)
 
-                            router.push(`/user/order-summaries/?id=${resp.data.id}`);
+                                    if (resp.data.id) {
+
+                                        // let url = `/user/order-summaries/?id=${resp.data.id}`
+                                        // window.location = url;
+
+                                        if (!product) {
+
+                                            clearcart();
+                                        } else {
+                                            jsCookie.remove('bn_product')
+                                        }
+                                        router.push(`/user/order-summaries/?id=${resp.data.id}`);
+
+                                    }
+
+                                } catch (err) {
+
+                                    // // Handle Error Here
+                                    // console.log("error")
+                                    // console.log(err);
+
+                                    if (err.response.data.error) {
+
+                                        toast.error(err.response.data.error, {
+                                            position: "bottom-center",
+                                            autoClose: 941,
+                                            hideProgressBar: true,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                        });
+                                    } else {
+
+                                        toast.error("Check your internet", {
+                                            position: "bottom-center",
+                                            autoClose: 941,
+                                            hideProgressBar: true,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                        });
+                                    }
+                                }
+                            };
+                            sendform();
+
                         }
-
 
                     } catch (err) {
 
                         // // Handle Error Here
                         // console.log("error")
                         // console.log(err);
+
                         if (err.response.data.error) {
 
                             toast.error(err.response.data.error, {
@@ -515,7 +609,7 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
                         }
                     }
                 };
-                sendform();
+                checkform();
 
                 // let o = CryptoJS.AES.encrypt(oid, `${process.env.COOKIES_SECRET_KEY}`).toString()
                 // router.push('/user/order-summaries');
@@ -744,114 +838,161 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
 
         // console.log("data")
 
-        let a = await fetch(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/payment/pretransaction`, {
 
-            method: 'POST', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
+        const checkform = async () => {
 
-        let txnRes = await a.json()
+            try {
+                // console.log("data")
+                let resp = await axios.post(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/checkorder`, data);
+                // console.log(resp.data)
 
-        // console.log(txnRes.error)
+                if (resp.data.success) {
 
-        if (txnRes.error == 'Some product is out of stock, check your cart') {
 
-            toast.error('Some product is out of stock, check your cart', {
-                position: "bottom-center",
-                autoClose: 941,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+                    let a = await fetch(`${process.env.NEXT_PUBLIC_DOMEN_NAME}/api/payment/pretransaction`, {
 
-            return;
+                        method: 'POST', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    })
 
-        } else if (txnRes.error == 'Some products are not servisable in your area') {
+                    let txnRes = await a.json()
 
-            toast.error('Some products are not servisable in your area', {
-                position: "bottom-center",
-                autoClose: 941,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+                    // console.log(txnRes.error)
 
-            return;
-        } else if (txnRes.error) {
+                    if (txnRes.error == 'Some product is out of stock, check your cart') {
 
-            toast.error('Check your internet', {
-                position: "bottom-center",
-                autoClose: 941,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+                        toast.error('Some product is out of stock, check your cart', {
+                            position: "bottom-center",
+                            autoClose: 941,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
 
-            return;
-        }
-        else {
+                        return;
 
-            jsCookie.remove('bn_product')
-        }
+                    } else if (txnRes.error == 'Some products are not servisable in your area') {
 
-        // console.log(txnRes.response)
-        // console.log(txnRes.error)
-        if (txnRes.response) {
+                        toast.error('Some products are not servisable in your area', {
+                            position: "bottom-center",
+                            autoClose: 941,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
 
-            txnToken = txnRes.response.txnToken
-        } else {
+                        return;
+                    } else if (txnRes.error) {
 
-            toast.error(txnRes.error, {
-                position: "bottom-center",
-                autoClose: 941,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            return
-        }
+                        toast.error('Check your internet', {
+                            position: "bottom-center",
+                            autoClose: 941,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
 
-        var config = {
-            "root": "",
-            "flow": "DEFAULT",
-            "data": {
-                "orderId": oid, /* update order id */
-                "token": txnToken, /* update token value */
-                "tokenType": "TXN_TOKEN",
-                "amount": to /* update amount */
-            },
-            "handler": {
-                "notifyMerchant": function (eventName, data) {
-                    // console.log("notifyMerchant handler function called");
-                    // console.log("eventName => ", eventName);
-                    // console.log("data => ", data);
+                        return;
+                    }
+                    else {
+
+                        jsCookie.remove('bn_product')
+                    }
+
+                    // console.log(txnRes.response)
+                    // console.log(txnRes.error)
+                    if (txnRes.response) {
+
+                        txnToken = txnRes.response.txnToken
+                    } else {
+
+                        toast.error(txnRes.error, {
+                            position: "bottom-center",
+                            autoClose: 941,
+                            hideProgressBar: true,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                        return
+                    }
+
+                    var config = {
+                        "root": "",
+                        "flow": "DEFAULT",
+                        "data": {
+                            "orderId": oid, /* update order id */
+                            "token": txnToken, /* update token value */
+                            "tokenType": "TXN_TOKEN",
+                            "amount": to /* update amount */
+                        },
+                        "handler": {
+                            "notifyMerchant": function (eventName, data) {
+                                // console.log("notifyMerchant handler function called");
+                                // console.log("eventName => ", eventName);
+                                // console.log("data => ", data);
+                            }
+                        }
+                    };
+                    // console.log(config)
+
+
+                    // initialze configuration using init method 
+                    window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+
+                        // after successfully updating configuration, invoke JS Checkout
+                        window.Paytm.CheckoutJS.invoke();
+                        // console.log("init");
+                    }).catch(function onError(error) {
+                        // console.log("error => ", error);
+                        // console.log("init");
+                    });
+                }
+
+
+            } catch (err) {
+
+                // // Handle Error Here
+                // console.log("error")
+                // console.log(err);
+
+                if (err.response.data.error) {
+
+                    toast.error(err.response.data.error, {
+                        position: "bottom-center",
+                        autoClose: 941,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+
+                    toast.error("Check your internet", {
+                        position: "bottom-center",
+                        autoClose: 941,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
             }
         };
-        // console.log(config)
+        checkform();
 
-
-        // initialze configuration using init method 
-        window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
-
-            // after successfully updating configuration, invoke JS Checkout
-            window.Paytm.CheckoutJS.invoke();
-            // console.log("init");
-        }).catch(function onError(error) {
-            // console.log("error => ", error);
-            // console.log("init");
-        });
     }
 
     let googlePayClient;
@@ -1572,9 +1713,9 @@ export async function getServerSideProps(context) {
 
     // console.log(t)
     // console.log("kjdfjskjkdf")
-    let user = await User.findOne({ email: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
+    let user = await User.findOne({ roll: t.roll, email: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
 
-    let seller = await Seller.findOne({ shopemail: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
+    let seller = await Seller.findOne({ roll: t.roll, shopemail: t.email, resetToken: token, expireToken: { $gt: Date.now() } })
 
     let cart = await Cart.find({ userid: t.email, savelater: false })
 
