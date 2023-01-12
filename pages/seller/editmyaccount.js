@@ -27,7 +27,7 @@ const Editmyaccount = ({ seller }) => {
 
     const [shopname, setShopname] = useState(seller.shopname)
     const [phone, setPhone] = useState(`${seller.phone}`)
-    const [pincode, setPincode] = useState(`${seller.pincode}`)
+    const [pincode, setPincode] = useState(`${seller.pincode ? seller.pincode : ""}`)
     const [address, setAddress] = useState(seller.address)
     const [state, setState] = useState(seller.state)
     const [city, setCity] = useState(seller.city)
@@ -380,14 +380,14 @@ const Editmyaccount = ({ seller }) => {
                                     <label htmlFor="email-address" className="block text-gray-700 text-sm font-bold mb-2">Paytm Mkey</label>
                                     <input value={paytm_mkey} onChange={handlechange} id="email-addressa" name="paytm_mkey" type="name" autoComplete="email" className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Paytm mkey" />
                                 </div>
-                                <div className='pt-5'>
+                                {/* <div className='pt-5'>
                                     <label htmlFor="email-address" className="block text-gray-700 text-sm font-bold mb-2">Google Mname</label>
                                     <input value={google_mname} onChange={handlechange} id="email-addressa" name="google_mname" type="name" autoComplete="email" className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Google Mname" />
                                 </div>
                                 <div className='pt-5'>
                                     <label htmlFor="email-address" className="block text-gray-700 text-sm font-bold mb-2">Google Mid</label>
                                     <input value={google_mid} onChange={handlechange} id="email-addressa" name="google_mid" type="name" autoComplete="email" className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Google Mid" />
-                                </div>
+                                </div> */}
                                 
 
                             </div>

@@ -180,16 +180,16 @@ const Home = ({ t, products }) => {
 
           </div>
           <div>
-            <img src="/eCommerce-Website-Components-image-1024x660-min.jpg" className="w-full"/>
+            <img src="/eCommerce-Website-Components-image-1024x660-min.jpg" className="w-full" />
 
           </div>
           <div>
-            <img src="/order-placed-received-processing-concept-tiny-people-e-commerce-shopping-vector-illustration-set-online-booking-customer-216417607.jpg" className="w-full"/>
+            <img src="/order-placed-received-processing-concept-tiny-people-e-commerce-shopping-vector-illustration-set-online-booking-customer-216417607.jpg" className="w-full" />
 
           </div>
           <div>
-            <img src="/buyonline.jpg" className="w-full"/>
-            
+            <img src="/buyonline.jpg" className="w-full" />
+
           </div>
         </Carousel>
 
@@ -261,7 +261,7 @@ const Home = ({ t, products }) => {
 
                           <div className="flex justify-between mt-5">
                             <div>
-                              <p className="text-sm font-medium leading-none text-gray-800 ">{(products[item].title).slice(0, 38)}...</p>
+                              <p className="text-sm font-medium leading-none text-gray-800 ">{(products[item].title).slice(0, 38)}{(products[item].title) > 38 ? "..." : ""}</p>
                             </div>
                           </div>
 

@@ -42,7 +42,7 @@ const vegitable = ({ products }) => {
                                         <div className="mx-10 items-start">
 
                                             <h2 className="sm:text-xs text-xxs text-gray-400 font-medium title-font pb-2">vegitable</h2>
-                                            <h2 className="sm:text-sm text-xs text-gray-900 font-medium title-font mb-2">{products[item].title}</h2>
+                                            <h2 className="sm:text-sm text-xs text-gray-900 font-medium title-font mb-2">{(products[item].title).slice(0, 38)}{(products[item].title) > 38 ? "..." : ""}</h2>
 
 
                                             {products[item].discount != 0 && <p className=" text-black">₹ <span className="text-sm font-medium">{parseInt((products[item].price) - (((products[item].price) * products[item].discount) / 100))}</span> <del className="text-xs ml-2 font-extrathin">₹ {((products[item].price).toString())}</del>  <span className="text-green-500 text-xs">{products[item].discount}% off</span>

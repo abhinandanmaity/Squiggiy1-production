@@ -163,28 +163,28 @@ const myaccount = ({ user }) => {
                                                     <div className="px-4 py-2 font-semibold">Paytm Mkey</div>
                                                     <div className="px-4 py-2">
                                                         {user.paytm_mkey}
-                                                        </div>
+                                                    </div>
                                                 </div>}
 
                                                 {user.paytm_mid != undefined && <div className="grid grid-cols-2 text-sm">
                                                     <div className="px-4 py-2 font-semibold">Paytm Mid</div>
                                                     <div className="px-4 py-2">
-                                                    {user.paytm_mid}
-                                                        </div>
+                                                        {user.paytm_mid}
+                                                    </div>
                                                 </div>}
 
 
                                                 {user.google_mid != undefined && <div className="grid grid-cols-2 text-sm">
                                                     <div className="px-4 py-2 font-semibold">Google Mid</div>
                                                     <div className="px-4 py-2">
-                                                    {user.google_mid}
-                                                        </div>
+                                                        {user.google_mid}
+                                                    </div>
                                                 </div>}
                                                 {user.google_mname != undefined && <div className="grid grid-cols-2 text-sm">
                                                     <div className="px-4 py-2 font-semibold">Google Mname</div>
                                                     <div className="px-4 py-2">
-                                                    {user.google_mname}
-                                                        </div>
+                                                        {user.google_mname}
+                                                    </div>
                                                 </div>}
 
                                             </div>

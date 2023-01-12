@@ -776,7 +776,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                                                         <div className="flex justify-between mt-5">
                                                             <div>
-                                                                <p className="text-sm font-medium leading-none text-gray-800 ">{(similarproduct[item].title).slice(0, 38)}...</p>
+                                                                <p className="text-sm font-medium leading-none text-gray-800 ">{(similarproduct[item].title).slice(0, 38)}{(similarproduct[item].title) > 38 ? "..." : ""}</p>
                                                             </div>
                                                         </div>
 
