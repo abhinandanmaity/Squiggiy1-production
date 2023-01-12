@@ -84,10 +84,9 @@ const ViewProducts = ({ products }) => {
     return (
 
         <>
-
             <Head>
                 <title>Squiggiy - View Product</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Check your products" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

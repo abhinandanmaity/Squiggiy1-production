@@ -97,7 +97,7 @@ const Updateproduct = ({ seller }) => {
 
             <Head>
                 <title>Squiggiy - Update Product</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Update your products" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

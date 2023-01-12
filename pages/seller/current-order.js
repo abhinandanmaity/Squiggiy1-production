@@ -170,7 +170,7 @@ const CurrentOrder = ({ userorders, user, order }) => {
         <>
             <Head>
                 <title>Squiggiy - Current Order</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Squiggiy" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

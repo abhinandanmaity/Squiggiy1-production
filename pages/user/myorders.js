@@ -249,7 +249,7 @@ const Myorders = ({ orders, user }) => {
 
             <Head>
                 <title>Squiggiy - My Orders</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Check your order" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

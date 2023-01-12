@@ -137,7 +137,7 @@ const Deleteproduct = ({ seller }) => {
 
             <Head>
                 <title>Squiggiy - Delete Product</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Delete your products" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

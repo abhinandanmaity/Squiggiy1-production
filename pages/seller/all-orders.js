@@ -260,7 +260,7 @@ const AllOrders = ({ orders }) => {
 
             <Head>
                 <title>Squiggiy - View Orders</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Check your orders" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

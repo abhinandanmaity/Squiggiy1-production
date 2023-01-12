@@ -1452,13 +1452,13 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
 
             <Head>
                 <title>Squiggiy - Checkout</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Squiggiy" />
                 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
                 <link rel="icon" href="/favicon.png" />
 
             </Head>
 
-            <Script async src="https://pay.google.com/gp/p/js/pay.js" onload={onGooglePayLoaded} />
+            {/* <Script async src="https://pay.google.com/gp/p/js/pay.js" onload={onGooglePayLoaded} /> */}
 
             <Script type="application/javascript" crossorigin="anonymous" src={`https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/${seller.paytm_mid}.js`} />
 

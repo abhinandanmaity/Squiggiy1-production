@@ -320,7 +320,7 @@ const Sellersingup = () => {
 
             {<><Head>
                 <title>Squiggiy - Singup</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Sing up into squiggiy" />
                 <link rel="icon" href="/favicon.png" />
             </Head><div className="">
 

@@ -29,7 +29,7 @@ const myaccount = ({ user }) => {
 
             <Head>
                 <title>Squiggiy - MyAccount</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Your account" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

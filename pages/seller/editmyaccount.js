@@ -254,7 +254,7 @@ const Editmyaccount = ({ seller }) => {
         <div>
             <Head>
                 <title>Squiggiy - Edit Myaccount</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Squiggiy" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 
@@ -526,14 +526,18 @@ export async function getServerSideProps(context) {
 
     if (seller) {
 
-        bytes = CryptoJS.AES.decrypt(seller.paytm_mid, `${process.env.CRYPTO_SECRET_KEY}`)
-        bytes2 = CryptoJS.AES.decrypt(seller.paytm_mkey, `${process.env.CRYPTO_SECRET_KEY}`)
+        if (seller.paytm_mid) {
 
-        pp = bytes.toString(CryptoJS.enc.Utf8)
-        pp2 = bytes2.toString(CryptoJS.enc.Utf8)
+            bytes = CryptoJS.AES.decrypt(seller.paytm_mid, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp = bytes.toString(CryptoJS.enc.Utf8)
+            seller.paytm_mid = pp
+        }
+        if (seller.paytm_mkey) {
 
-        seller.paytm_mid = pp
-        seller.paytm_mkey = pp2
+            bytes2 = CryptoJS.AES.decrypt(seller.paytm_mkey, `${process.env.CRYPTO_SECRET_KEY}`)
+            pp2 = bytes2.toString(CryptoJS.enc.Utf8)
+            seller.paytm_mkey = pp2
+        }
     }
 
     return {

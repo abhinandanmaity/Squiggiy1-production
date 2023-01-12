@@ -327,7 +327,7 @@ const Createproduct = ({ user }) => {
 
       <Head>
         <title>Squiggiy - Create Product</title>
-        <meta name="description" content="Upp your fasion" />
+        <meta name="description" content="Add your products" />
         <link rel="icon" href="/favicon.png" />
       </Head>
 

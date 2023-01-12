@@ -457,7 +457,7 @@ const Index = ({ orders, bestSellingproduct }) => {
 
             <Head>
                 <title>Squiggiy - Sales Overview</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Squiggiy Seller which makes your business widely" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

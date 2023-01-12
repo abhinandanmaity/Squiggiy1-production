@@ -148,7 +148,7 @@ const Mywishlist = ({ t, product }) => {
 
             <Head>
                 <title>Squiggiy - MyWishlist</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Check your wishlist" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
 

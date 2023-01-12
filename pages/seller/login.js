@@ -113,7 +113,7 @@ const Sellerlogin = () => {
 
             {<><Head>
                 <title>Squiggiy - Login</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Login your account" />
                 <link rel="icon" href="/favicon.png" />
             </Head><div className="">
 

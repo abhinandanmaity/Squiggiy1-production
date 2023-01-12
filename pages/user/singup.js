@@ -278,7 +278,7 @@ const Singup = () => {
 
             {<><Head>
                 <title>Squiggiy - Singup</title>
-                <meta name="description" content="Upp your fasion" />
+                <meta name="description" content="Singup in your account" />
                 <link rel="icon" href="/favicon.png" />
             </Head><div className="">
 
