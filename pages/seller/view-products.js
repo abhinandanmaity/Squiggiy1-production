@@ -221,7 +221,7 @@ const ViewProducts = ({ products }) => {
 
 
                     <div className=" visible xsm:invisible h-auto xsm:h-0">
-
+                        {id = 1}
                         <BaseCard title="Products" className="">
                             <Table
                                 aria-label="simple table"
