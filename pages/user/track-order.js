@@ -410,8 +410,6 @@ const trackOrder = ({ order }) => {
 
 
                     <div className=" visible xsm:invisible h-auto xsm:h-0">
-
-                        {id = 1}
                         <BaseCard title="" >
 
                             <span className='text-xl text-pink-500 font-bold'>Product</span>

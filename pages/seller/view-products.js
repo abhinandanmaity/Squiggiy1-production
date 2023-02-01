@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { Grid, Stack, Pagination } from "@mui/material";
@@ -39,19 +38,18 @@ const ViewProducts = ({ products }) => {
     // console.log(products)
 
     let i = (page * 5) - 1;
-    let j = (page * 5) - 5;
+        let j = (page * 5) - 5;
     for (const item in products) {
 
-        if (i == j - 1) {
+        if (i == j-1) {
             break
         }
-
+        // console.log("jdshkjhdkfjhdfdfgvdfbfdbfgdbfg")
         if (products.length > i) {
 
             result[item] = products[i]
         }
         i--;
-
     }
     result.reverse()
 
@@ -60,9 +58,10 @@ const ViewProducts = ({ products }) => {
         let i = (page * 5) - 1;
         let j = (page * 5) - 5;
         result = [];
+
         for (const item in products) {
 
-            if (i == j - 1) {
+            if (i == j) {
                 break
             }
 
@@ -221,7 +220,7 @@ const ViewProducts = ({ products }) => {
 
 
                     <div className=" visible xsm:invisible h-auto xsm:h-0">
-                        {id = 1}
+                    {id = 1}
                         <BaseCard title="Products" className="">
                             <Table
                                 aria-label="simple table"
@@ -275,6 +274,8 @@ const ViewProducts = ({ products }) => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
+
+                                    
                                     {Object.keys(result).map((item) => {
 
                                         return (

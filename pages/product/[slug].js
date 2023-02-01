@@ -50,7 +50,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
     const refershvarient = (newqty, newmesure) => {
 
-        let url = `http://localhost:3000/product/${variants[newqty][newmesure]['slug']}`
+        let url = `${process.env.NEXT_PUBLIC_DOMEN_NAME}/product/${variants[newqty][newmesure]['slug']}`
         router.push(url);
 
     }

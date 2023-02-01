@@ -567,7 +567,12 @@ const Index = ({ orders, bestSellingproduct }) => {
 
                         {/* </Grid> */}
 
-                        <Grid item xs={12} lg={12}>
+                        <Grid item xs={12} lg={12}
+                        sx={{
+                            mt: "3.5rem",
+                            pt: "3.5rem"
+                        }}
+                        >
 
                             {/* <div className="bg-gray-100  flex flex-col justify-center items-center pt-9 sm:pt-12 lg:pt-16 pb-9">
                                 <div className="2xl:container 2xl:mx-auto flex flex-col justify-center items-center sm:pb-12 lg:pb-0 space-y-4 px-4 md:px-6 2xl:px-0">

@@ -131,6 +131,10 @@ const Ordersummeris = ({ order }) => {
                                         <p className="text-sm  font-semibold leading-4 text-gray-800">Payment Method</p>
                                         <p className="text-xs leading-5 text-gray-600">{order.paymentstatus == 'Case on delivery' ? 'Case on delivery' : 'Online Payment'}</p>
                                     </div>
+                                    <div className="flex jusitfy-start items-start flex-col space-y-2">
+                                        <p className="text-sm  font-semibold leading-4 text-gray-800">Order At</p>
+                                        <p className="text-xs leading-5 text-gray-600">{order.createdAt.slice(0, 10)} {order.createdAt.slice(11, 16)}</p>
+                                    </div>
                                 </div>
                                 <div className="flex flex-col w-full space-y-4">
                                     <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
