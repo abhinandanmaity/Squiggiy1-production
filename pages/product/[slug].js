@@ -345,7 +345,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                                 <div className="container px-5 pt-24 mx-auto">
                                     <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center">
-                                        <img alt="squiggiy" className="h-85 rounded-t-lg  object-center mb-1 mx-5 w-99" src={product.img} />
+                                        <img alt="squiggiy" className="h-85 rounded-2xl object-center mb-1 mx-5 w-99" src={product.img} />
                                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                                             <h2 className="text-sm title-font text-gray-500 tracking-widest">SQUIGGIY</h2>
 
@@ -374,7 +374,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
                                                     <svg fill="none" stroke="currentColor" strokelinecap="round" strokelinejoin="round" strokewidth="2" className="w-4 h-4 text-pink-500" viewBox="0 0 24 24">
                                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                                     </svg>
-                                                    <span className="text-gray-800 ml-3">4 Reviews</span>
+                                                    <span className="text-gray-800 ml-3">94 Reviews</span>
                                                 </span>
                                                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                                                     <a className="text-gray-500">
@@ -476,6 +476,12 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                             </section >
 
+                            <div className="container mx-auto w-max">
+
+                                <img src="/IMG_20230316_162530.jpg" alt="" />
+
+                            </div>
+
 
                             <div>
                                 <div className='container mx-auto w-max lg:w-2/3 pt-6'>
@@ -522,7 +528,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
 
                                                 return (
-                                                    <div key={similarproduct[item].slug} className="flex flex-col justify-center items-start px-1 py-2 bg-white cursor-pointer">
+                                                    <div key={similarproduct[item].slug} className="flex flex-col justify-center items-start px-1 py-2 bg-white cursor-pointer hover:scale-110 ease-in duration-200">
 
                                                         <div className="relative">
 
@@ -538,7 +544,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                                                             <Link href={`/product/${similarproduct[item].slug}`}><span>
 
-                                                                <img className="rounded-t-lg w-85 h-44" src={similarproduct[item].img} alt="squiggiy" />
+                                                                <img className="rounded-xl w-85 h-44" src={similarproduct[item].img} alt="squiggiy" />
 
                                                                 <div className="flex justify-between mt-5">
                                                                     <div>
@@ -586,7 +592,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                         <div className="container px-5 pt-24 mx-auto">
                             <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center">
-                                <img alt="ecommerce" className="h-85 rounded-t-lg  object-center mb-1 mx-5 w-100" src={product.img} />
+                                <img alt="ecommerce" className="h-85 rounded-2xl  object-center mb-1 mx-5 w-100" src={product.img} />
                                 <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                                     <h2 className="text-sm title-font text-gray-500 tracking-widest">SQUIGGIY</h2>
 
@@ -715,6 +721,14 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                     </section >
 
+
+                    <div className="container mx-auto w-max">
+
+                        <img src="/IMG_20230316_162530.jpg" alt="" />
+
+                    </div>
+
+
                     <div>
                         <div className='container mx-auto w-max lg:w-2/3 pt-6'>
 
@@ -757,7 +771,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
                                     if (item < 12 && similarproduct[item].slug != slug) {
 
                                         return (
-                                            <div key={similarproduct[item].slug} className="flex flex-col justify-center items-start px-1 py-2 bg-white cursor-pointer">
+                                            <div key={similarproduct[item].slug} className="flex flex-col justify-center items-start px-1 py-2 bg-white cursor-pointer hover:scale-110 ease-in duration-200">
 
                                                 <div className="relative">
 
@@ -772,7 +786,7 @@ const Slug = ({ t, product, variants, similarproduct, seller, getseller }) => {
 
                                                     <Link href={`/product/${similarproduct[item].slug}`}><span>
 
-                                                        <img className="rounded-t-lg w-60 h-44" src={similarproduct[item].img} alt="squiggiy" />
+                                                        <img className="rounded-xl w-60 h-44" src={similarproduct[item].img} alt="squiggiy" />
 
                                                         <div className="flex justify-between mt-5">
                                                             <div>

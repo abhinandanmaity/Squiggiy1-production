@@ -222,7 +222,7 @@ const Home = ({ t, products }) => {
                   // console.log(similarproduct[item])
 
                   return (
-                    <div key={products[item].slug} className="flex flex-col justify-center items-start px-1 py-2 bg-white cursor-pointer">
+                    <div key={products[item].slug} className="flex flex-col justify-center items-start px-1 py-2 bg-white cursor-pointer hover:scale-110 ease-in duration-200 rounded-xl">
 
                       <div className="relative">
 
@@ -257,7 +257,7 @@ const Home = ({ t, products }) => {
 
                         <Link href={`/product/${products[item].slug}`}><span>
 
-                          <img className="rounded-t-lg w-56 h-44" src={products[item].img} alt="squiggiy" />
+                          <img className="rounded-2xl w-56 h-44" src={products[item].img} alt="squiggiy" />
 
                           <div className="flex justify-between mt-5">
                             <div>

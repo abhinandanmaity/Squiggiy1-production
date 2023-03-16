@@ -334,7 +334,7 @@ const Navbar = ({ user, logout }) => {
 
     
 
-      {user.roll != 'seller' && <div className=" body flex flex-wrap p-1 flex-col xs:flex-row items-center ">
+      {user.roll != 'seller' && <div className=" body flex flex-wrap p-3 flex-col xs:flex-row items-center bg-gray-200">
 
         <Link href={'/'}><a className="pt-2 xs:pt-0 flex title-font font-medium items-center text-gray-900 mb-3 xs:mb-0 ">
           <span className="xs:ml-3 text-xl"><img src="/squiggiylogo2.jpg" alt="" className=" h-5 w-20 md:h-6 md:w-24 " /></span>

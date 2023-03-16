@@ -32,10 +32,10 @@ const grocery = ({ products }) => {
 
                         return (
 
-                            <div key={item._id} className=" xl:w-1/4 md:w-1/2 xs:w-1/2 p-8">
-                                <div className=" bg-gray-100 p-2 rounded-md shadow-2xl ">
+                            <div key={item._id} className=" xl:w-1/4 md:w-1/2 xs:w-1/2 p-8 hover:scale-110 ease-in duration-200">
+                                <div className=" bg-gray-100 p-2 rounded-xl shadow-2xl ">
                                     <Link href={`/product/${products[item].slug}`}><a>
-                                        <img className=" h-72 rounded-t-lg w-96 object-contain object-center mb-3" src={products[item].img} alt="squiggiy" />
+                                        <img className=" h-72 rounded-2xl w-96 object-contain object-center mb-3" src={products[item].img} alt="squiggiy" />
 
                                         <div className="mx-10 items-start">
 
