@@ -1600,20 +1600,20 @@ const Checkout = ({ user, cart, product, outostock, seller }) => {
 
                                     </ol>
 
-                                    {!product && cart != undefined && pmethod === 'netbank' && <div className="mx-10 my-4">
+                                    {/*{!product && cart != undefined && pmethod === 'netbank' && <div className="mx-10 my-4">
                                         <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {to}</span></button>
 
-                                    </div>}
+                                    </div>}*/}
                                     {/* {!product && cart != undefined && pmethod === 'googlepay' && <div className="mx-10 my-4">
                                         <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {to}</span></button>
 
                                     </div>} */}
 
 
-                                    {(product && pmethod === 'netbank') && <div className="mx-10 my-4">
+                                    {/*{(product && pmethod === 'netbank') && <div className="mx-10 my-4">
                                         <button onClick={initiatepayment} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {(parseInt((product.price) - (((product.price) * product.discount) / 100)))}</span></button>
 
-                                    </div>}
+                                    </div>}*/}
                                     {/* {(product && pmethod === 'googlepay') && <div className="mx-10 my-4">
                                         <button onClick={initiatepayment_googlepay} className='px-2 py-0.5 bg-pink-600 text-pink-50 hover:bg-pink-700 rounded-md'><span className='text-sm'>Pay</span> <span className='text-xs'>₹ {(parseInt((product.price) - (((product.price) * product.discount) / 100)))}</span></button>
 
