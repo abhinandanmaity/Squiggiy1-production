@@ -14,9 +14,7 @@ export default async function handler(req, res) {
 
 
         let carts = {}
-        if(!cart){
-            carts = undefined
-        }
+        
         for (let item of cart) {
             if (item._id in carts) {
                 if (!carts[item._id]) {
@@ -28,6 +26,11 @@ export default async function handler(req, res) {
             } else {
                 carts[item._id] = JSON.parse(JSON.stringify(item))
             }
+        }
+
+        if(Object.keys(carts).length == 0){
+
+            carts = undefined
         }
 
         res.status(200).json({ carts })
