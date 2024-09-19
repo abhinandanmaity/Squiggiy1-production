@@ -477,7 +477,7 @@ const Navbar = ({ user, logout }) => {
                           </div>
                           <div className="flex items-center justify-between pt-2">
                             <p className="text-xs sm:text-sm leading-none text-black">Discount</p>
-                            <p className="text-xs sm:text-sm leading-none text-black">-₹ {dtotal == undefined ? dto : dtotal}</p>
+                            <p className="text-xs sm:text-sm leading-none text-black">₹ {dtotal == undefined ? dto : dtotal}</p>
                           </div>
                           <div className="flex items-center justify-between pt-2">
                             <p className="text-xs sm:text-sm leading-none text-black">Shipping Charge</p>
