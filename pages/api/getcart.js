@@ -14,6 +14,9 @@ export default async function handler(req, res) {
 
 
         let carts = {}
+        if(!cart){
+            carts = undefined
+        }
         for (let item of cart) {
             if (item._id in carts) {
                 if (!carts[item._id]) {
