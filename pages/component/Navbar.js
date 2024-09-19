@@ -168,6 +168,12 @@ const Navbar = ({ user, logout }) => {
         })
       }
 
+      if(to <= 399){
+
+          to += 40;
+          setTotal(to);
+      }
+
     }
     // console.log(cart.length)
     // console.log(to)
@@ -505,7 +511,9 @@ const Navbar = ({ user, logout }) => {
 
                               <Link href={`/product/${cart[item].productid}`}>
                                 <div className="w-1/4">
-                                  <img src="https://cdn.tuk.dev/assets/templates/e-commerce-kit/bestSeller3.png" alt className="w-full h-full object-center object-cover" />
+                                <img src={cart[item].img} alt className="w-full h-full object-center object-cover" />
+                                  
+                                  {/* <img src="https://cdn.tuk.dev/assets/templates/e-commerce-kit/bestSeller3.png" alt className="w-full h-full object-center object-cover" /> */}
                                 </div>
                               </Link>
 

@@ -19,6 +19,7 @@ const Mywishlist = ({ t, product }) => {
 
     // console.log(product)
     const router = useRouter();
+    const [product, setProduct] = useState(product);
 
     const handlesubmit = (p) => {
 
@@ -115,6 +116,10 @@ const Mywishlist = ({ t, product }) => {
                         draggable: true,
                         progress: undefined,
                     });
+
+                    setProduct((prevProducts) =>
+                        prevProducts.filter(item => item.slug !== p.slug)
+                    );
 
                 } catch (err) {
                     // Handle Error Here
